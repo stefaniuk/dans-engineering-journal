@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Hello, World!"
-date:   2016-03-04 07:21:52 +0000
-categories: general
+title: "Hello, World!"
+date: 2016-03-04 07:21:52 +0000
+comments: true
 ---
 I decided to blog. This is long overdue. I should have started this years ago. This begs the question why didn't I? I code at work I code at home. Time is very precious for me... and yes, there are more important things in live than a hobby. But I'm going to try anyway!
 
