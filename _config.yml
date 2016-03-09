@@ -1,5 +1,5 @@
 url: http://stefaniuk.co.uk
-permalink: pretty
+permalink: /:title
 
 title: Daniel Stefaniuk
 description: >
