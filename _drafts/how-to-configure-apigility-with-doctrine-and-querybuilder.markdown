@@ -32,3 +32,7 @@ This is work in progress...
     - Command-line tools
     - 'zf-apigility-doctrine' configuration options
     - 'zf-doctrine-querybuilder' configuration options
+
+4. More advanced usage
+    - Join tables http://stackoverflow.com/questions/35459020/apigility-doctrine-1-to-many-relationship-between-2-entities
+    - Limit number of data items returned
