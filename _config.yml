@@ -11,3 +11,6 @@ linkedin_username: dstefaniuk
 twitter_username: danstefaniuk
 
 markdown: kramdown
+
+gems:
+  - jekyll-sitemap
