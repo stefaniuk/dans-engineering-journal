@@ -15,6 +15,7 @@ markdown: kramdown
 gems:
   - jekyll-last-modified-at
   - jekyll-sitemap
+  - jekyll-seo-tag
 
 sass:
   style: :compressed
