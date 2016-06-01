@@ -191,6 +191,12 @@
 .post-meta {
     font-size: $small-font-size;
     color: $grey-color;
+    font-style: italic;
+
+    time[itemprop=dateModified] {
+        font-size: $small-font-size * 0.75;
+        color: lighten($grey-color, 10%);
+    }
 }
 
 .post-link {

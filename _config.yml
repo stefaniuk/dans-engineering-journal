@@ -13,4 +13,11 @@ twitter_username: danstefaniuk
 markdown: kramdown
 
 gems:
+  - jekyll-last-modified-at
   - jekyll-sitemap
+
+sass:
+  style: :compressed
+
+exclude:
+  - TODO.md
