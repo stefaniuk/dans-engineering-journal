@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://stefaniuk.co.uk/hello-world</loc>
+<lastmod>2016-03-28T23:45:10+01:00</lastmod>
+</url>
+<url>
+<loc>http://stefaniuk.co.uk/about/</loc>
+<lastmod>2016-03-30T21:40:02+01:00</lastmod>
+</url>
+<url>
+<loc>http://stefaniuk.co.uk/</loc>
+<lastmod>2016-06-01T23:06:26+01:00</lastmod>
+</url>
+</urlset>
