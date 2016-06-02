@@ -21,4 +21,5 @@ sass:
   style: :compressed
 
 exclude:
+  - Makefile
   - TODO.md
