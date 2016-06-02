@@ -21,6 +21,4 @@ sass:
   style: :compressed
 
 exclude:
-  - Gemfile
-  - Gemfile.lock
   - TODO.md
