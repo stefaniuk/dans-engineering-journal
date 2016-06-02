@@ -1,6 +1,17 @@
+push: commit
+	@cd _site \
+		&& git push
+commit: build
+	@cd _site \
+		&& touch .nojekyll \
+		&& git add -A \
+		&& git commit -m "Automated build"
 build: clean
-	@jekyll build \
-		&& tar -zcf dist/_site.tar.gz _site
+	@cd _site \
+		&& git clone git@github.com:stefaniuk/stefaniuk.github.io.git . \
+		&& git checkout master \
+		&& cd .. \
+		&& JEKYLL_ENV=production jekyll build
 clean:
-	@rm dist/*.tar.gz
-	@rm -rf _site/*
+	@rm -rf _site
+	@mkdir _site
