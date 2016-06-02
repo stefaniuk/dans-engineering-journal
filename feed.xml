@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Daniel Stefaniuk</title>
+    <description>This is my blog about programming.
+</description>
+    <link>http://stefaniuk.co.uk/</link>
+    <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 02 Jun 2016 22:25:46 +0100</pubDate>
+    <lastBuildDate>Thu, 02 Jun 2016 22:25:46 +0100</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Hello, World!</title>
+        <description>&lt;p&gt;I decided to blog. This is long overdue. I should have started this years ago. This begs the question why didn’t I? I code at work I code at home. Time is very precious for me… and yes, there are more important things in live than a hobby. But I’m going to try anyway!&lt;/p&gt;
+
+&lt;p&gt;There is an objective, self-improvement. Continuous learning is part of being a good programmer. The world around us changes quickly. Coping with change is no longer sufficient. We need to embrace it.&lt;/p&gt;
+
+&lt;p&gt;I also believe that keeping notes of what I do will help me gain better understanding of the problems I solve. Maintaining good reading habits and writing a lot of code is one thing. But sharing the knowledge and being able to explain all of that to others requires deep insight - &lt;strong&gt;here is my challenge&lt;/strong&gt;!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 04 Mar 2016 07:21:52 +0000</pubDate>
+        <link>http://stefaniuk.co.uk/hello-world</link>
+        <guid isPermaLink="true">http://stefaniuk.co.uk/hello-world</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
