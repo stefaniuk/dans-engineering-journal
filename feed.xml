@@ -6,9 +6,212 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 03 Jul 2016 22:50:10 +0100</pubDate>
-    <lastBuildDate>Sun, 03 Jul 2016 22:50:10 +0100</lastBuildDate>
+    <pubDate>Sun, 03 Jul 2016 22:57:00 +0100</pubDate>
+    <lastBuildDate>Sun, 03 Jul 2016 22:57:00 +0100</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>An Alternative Approach to Estimates</title>
+        <description>&lt;h2&gt;Task&lt;/h2&gt;
+
+&lt;p&gt;A while ago I was asked to plan one of the last phases of development on a project that required re-architecture of the data access layer. One of my tasks was to estimate an effort to replace code that communicates with a legacy back-end. The new code, instead of directly connecting to a database should consume JSON-based REST API endpoints. Due to time constraints and to mitigate the risk to bring the service down this change supposed to be done in as non-invasive way as possible.&lt;/p&gt;
+
+&lt;p&gt;Objectives&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Functionality of the application must remain unchanged for the end user&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Facts&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It is a simple MVC application built upon a reach domain model&lt;/li&gt;
+&lt;li&gt;Books like &lt;em&gt;&lt;a href=&quot;https://www.amazon.co.uk/Design-patterns-elements-reusable-object-oriented/dp/0201633612&quot;&gt;Design Patterns&lt;/a&gt;&lt;/em&gt; and &lt;em&gt;&lt;a href=&quot;https://www.amazon.co.uk/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882&quot;&gt;Clean Code&lt;/a&gt;&lt;/em&gt; were probably not that popular at the time of writing the software&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Issues&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Developers&amp;#39; skills in our team differ much&lt;/li&gt;
+&lt;li&gt;Complexity of the code that needs to be refactored varies from module to module&lt;/li&gt;
+&lt;li&gt;We have never done that before&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assumptions&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We know the product already&lt;/li&gt;
+&lt;li&gt;Most of the code logic and flow remain the same&lt;/li&gt;
+&lt;li&gt;It should take no longer to refactor the code than implementing that functionality from scratch&lt;/li&gt;
+&lt;li&gt;A lot of work is repetitive and follows a pattern&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;How to take the above factors into account and produce accurate estimates for the management?&lt;/p&gt;
+
+&lt;h2&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;I was not able to find anyone who faced similar technical problems with the platform we use. This tells me something about our design, anyway... Yes, I heard about &lt;a href=&quot;http://csse.usc.edu/tools/COCOMOII.php&quot;&gt;COCOMO II - Constructive Cost Model&lt;/a&gt;. However, I still decided to come up with my simplistic formula.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&amp;nbsp;
+$$\scriptsize
+{
+    \sum_{i=0}^n componentManDays_i = totalManDays
+}
+$$
+$$\scriptsize
+{
+    \frac{linesOfCode_i}{avgLinesOfCodePerHour \times 6h} \times complexityFactor_i \times contingency = componentManDays_i
+}
+$$
+&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Why? Because whichever method is used the outcome is always a guesstimate. I found out that &lt;strong&gt;it is so much dependent on motivation of individual team members&lt;/strong&gt; as well as their willingness to learn and contribute. This can not be expressed by any mathematical equation.&lt;/p&gt;
+
+&lt;p&gt;I usually add 20% contingency to my calculations and set complexity factor to &lt;em&gt;cf=1&lt;/em&gt; for a simple code in higher layers of an application architecture, &lt;em&gt;cf=2&lt;/em&gt; for components that require more analytical and problem solving skills and up to &lt;em&gt;cf=3&lt;/em&gt; for tasks that require attention of a polyglot programmer.&lt;/p&gt;
+
+&lt;h2&gt;Automation&lt;/h2&gt;
+
+&lt;p&gt;After considering a manual approach of producing my estimates for each module and component I decided to automate that process. Quick, and in my opinion relatively reliable solution was to base the calculations on an ability to change number of lines of code by an average developer in our team in a selected period of time. There are number of issues with this approach. For example, &lt;strong&gt;data for the empirical analysis must come from a project with a comparable architecture, technology stack, complexity and codebase&lt;/strong&gt;. Fortunately, we have been working on this software already for over a year delivering new functionality. So, all the data I needed were in the version control system... The only thing I needed to do is write a script that does the rest of the work for me.&lt;/p&gt;
+
+&lt;p&gt;Here is the usage example followed by some of the Bash functions to help to extract relevant information from Git. I used an open source project to produce the output.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;div class=&quot;terminal&quot;&gt;
+  &lt;nav&gt;
+    &lt;a href=&quot;#&quot; class=&quot;close&quot;&gt;close&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;minimize&quot;&gt;minimize&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;deactivate&quot;&gt;deactivate&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;h3 class=&quot;title&quot;&gt;Terminal&lt;/h3&gt;
+  &lt;pre&gt;
+&lt;span class=&#39;command&#39;&gt;git_print_stats 1y # for Linux use &amp;quot;1 year&amp;quot;&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  1       1                     46 +23:-23&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  2       1                     79 +44:-35&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  3       0                        0 +0:-0&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  4       5                      46 +40:-6&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  5       0                        0 +0:-0&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  6       1                        2 +1:-1&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  7       0                        0 +0:-0&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  8       0                        0 +0:-0&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer  9       0                        0 +0:-0&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 10       1                        2 +1:-1&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 11       3                       17 +9:-8&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 12       2                      61 +57:-4&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 13      30                   545 +455:-90&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 14      30                   545 +455:-90&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 15       4                   117 +101:-16&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 16       1                        4 +2:-2&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 17       0                        0 +0:-0&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 18       1                      15 +13:-2&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 19       6                     79 +63:-16&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;Developer 20       3                       16 +8:-8&lt;/span&gt;
+&lt;span class=&#39;command&#39;&gt;git_calc_avg_changes_per_dev 1y&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;78&lt;/span&gt;
+&lt;span class=&#39;command&#39;&gt;source_count_lines ./module/A *.ext&lt;/span&gt;
+&lt;span class=&#39;output&#39;&gt;3595&lt;/span&gt;
+  &lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Calculate average line changes per developer in a given period of time.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_calc_avg_changes_per_dev&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_print_stats &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; --csv | awk -F&lt;span class=&quot;s1&quot;&gt;&#39;,&#39;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;{ print $3 }&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;n &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$data&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
+        &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt;; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;i++&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;done
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Print number of commits and line changes for each individual contributor.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_print_stats&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;OLDIFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$IFS&lt;/span&gt;; &lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39; #&#39;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;committer &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_list_committers&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
+        &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_count_commits &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_count_line_changes &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--csv&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+            &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;&#39;{ print $1 }&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;&#39;{ print $2 }&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,%s,%s,%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cc&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$al&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$dl&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else
+            &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%40s %7s %30s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$cc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;fi
+    done
+    &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OLDIFS&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;List all contributors.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_list_committers&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    git log --all --format&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%cN&#39;&lt;/span&gt; | sort -u
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Return number of commits for a given author.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_count_commits&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    git log &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --author&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --since&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --until&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y/%m/%d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --no-merges &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%h [%s] &amp;lt;%an&amp;gt;&#39;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --abbrev-commit &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    | wc -l | tr -d &lt;span class=&quot;s1&quot;&gt;&#39;[[:space:]]&#39;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Return number of line changes for a given author.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_count_line_changes&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    git log &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --author&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --since&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --until&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y/%m/%d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --no-merges &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%h [%s] &amp;lt;%an&amp;gt;&#39;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --abbrev-commit &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --numstat &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    | awk &lt;span class=&quot;s1&quot;&gt;&#39;NF==3 \
+        { plus+=$1; minus+=$2; total+=$1+$2 } END \
+        { printf(&quot;%d +%d:-%d\n&quot;, total, plus, minus) }&#39;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Calculate date in the past from now.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;date_ago&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OSTYPE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;darwin&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# 1y, 12m, 52w, 365d, etc.&lt;/span&gt;
+        date -v-&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; +%Y/%m/%d
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# 1 year, 12 months, 52 weeks, 365 days, etc.&lt;/span&gt;
+        date +%Y/%m/%d -d &lt;span class=&quot;s2&quot;&gt;&quot;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Count recursively all lines in files for a give file type.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;source_count_lines&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    find &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; -name &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt; -print0 | xargs -0 cat | wc -l
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 03 Jul 2016 21:18:13 +0100</pubDate>
+        <link>http://stefaniuk.co.uk/an-alternative-approach-to-estimates</link>
+        <guid isPermaLink="true">http://stefaniuk.co.uk/an-alternative-approach-to-estimates</guid>
+        
+        
+      </item>
     
       <item>
         <title>Hello, World!</title>
