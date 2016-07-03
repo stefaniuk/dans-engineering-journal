@@ -10,12 +10,13 @@ github_username: stefaniuk
 linkedin_username: dstefaniuk
 twitter_username: danstefaniuk
 
-markdown: kramdown
+markdown: redcarpet
 
 gems:
   - jekyll-last-modified-at
-  - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-terminal
 
 sass:
   style: :compressed

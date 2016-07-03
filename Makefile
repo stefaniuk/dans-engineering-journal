@@ -13,5 +13,6 @@ build: clean
 		&& cd .. \
 		&& JEKYLL_ENV=production jekyll build
 clean:
+	@rm -rf .sass-cache
 	@rm -rf _site
 	@mkdir _site
