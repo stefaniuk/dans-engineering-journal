@@ -6,13 +6,13 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 03 Jul 2016 22:57:00 +0100</pubDate>
-    <lastBuildDate>Sun, 03 Jul 2016 22:57:00 +0100</lastBuildDate>
+    <pubDate>Mon, 04 Jul 2016 06:27:24 +0100</pubDate>
+    <lastBuildDate>Mon, 04 Jul 2016 06:27:24 +0100</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>An Alternative Approach to Estimates</title>
-        <description>&lt;h2&gt;Task&lt;/h2&gt;
+        <description>&lt;h2&gt;Problem&lt;/h2&gt;
 
 &lt;p&gt;A while ago I was asked to plan one of the last phases of development on a project that required re-architecture of the data access layer. One of my tasks was to estimate an effort to replace code that communicates with a legacy back-end. The new code, instead of directly connecting to a database should consume JSON-based REST API endpoints. Due to time constraints and to mitigate the risk to bring the service down this change supposed to be done in as non-invasive way as possible.&lt;/p&gt;
 
