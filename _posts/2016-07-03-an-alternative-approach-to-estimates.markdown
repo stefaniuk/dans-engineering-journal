@@ -7,7 +7,7 @@ code-terminal: true
 comments: true
 ---
 
-## Task
+## Problem
 
 A while ago I was asked to plan one of the last phases of development on a project that required re-architecture of the data access layer. One of my tasks was to estimate an effort to replace code that communicates with a legacy back-end. The new code, instead of directly connecting to a database should consume JSON-based REST API endpoints. Due to time constraints and to mitigate the risk to bring the service down this change supposed to be done in as non-invasive way as possible.
 
