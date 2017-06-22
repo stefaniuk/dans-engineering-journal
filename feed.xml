@@ -6,9 +6,9 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 06 Jul 2016 19:41:37 +0100</pubDate>
-    <lastBuildDate>Wed, 06 Jul 2016 19:41:37 +0100</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
+    <pubDate>Thu, 22 Jun 2017 19:11:08 +0100</pubDate>
+    <lastBuildDate>Thu, 22 Jun 2017 19:11:08 +0100</lastBuildDate>
+    <generator>Jekyll v3.4.3</generator>
     
       <item>
         <title>An Alternative Approach to Estimates</title>
@@ -85,31 +85,31 @@ $$
   &lt;/nav&gt;
   &lt;h3 class=&quot;title&quot;&gt;Terminal&lt;/h3&gt;
   &lt;pre&gt;
-&lt;span class=&#39;command&#39;&gt;git_print_stats 1y # for Linux use &amp;quot;1 year&amp;quot;&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  1       1                     46 +23:-23&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  2       1                     79 +44:-35&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  3       0                        0 +0:-0&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  4       5                      46 +40:-6&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  5       0                        0 +0:-0&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  6       1                        2 +1:-1&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  7       0                        0 +0:-0&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  8       0                        0 +0:-0&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer  9       0                        0 +0:-0&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 10       1                        2 +1:-1&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 11       3                       17 +9:-8&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 12       2                      61 +57:-4&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 13      30                   545 +455:-90&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 14      30                   545 +455:-90&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 15       4                   117 +101:-16&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 16       1                        4 +2:-2&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 17       0                        0 +0:-0&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 18       1                      15 +13:-2&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 19       6                     79 +63:-16&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;Developer 20       3                       16 +8:-8&lt;/span&gt;
-&lt;span class=&#39;command&#39;&gt;git_calc_avg_changes_per_dev 1y&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;78&lt;/span&gt;
-&lt;span class=&#39;command&#39;&gt;source_count_lines ./module/A *.ext&lt;/span&gt;
-&lt;span class=&#39;output&#39;&gt;3595&lt;/span&gt;
+&lt;span class='command'&gt;git_print_stats 1y # for Linux use &amp;quot;1 year&amp;quot;&lt;/span&gt;
+&lt;span class='output'&gt;Developer  1       1                     46 +23:-23&lt;/span&gt;
+&lt;span class='output'&gt;Developer  2       1                     79 +44:-35&lt;/span&gt;
+&lt;span class='output'&gt;Developer  3       0                        0 +0:-0&lt;/span&gt;
+&lt;span class='output'&gt;Developer  4       5                      46 +40:-6&lt;/span&gt;
+&lt;span class='output'&gt;Developer  5       0                        0 +0:-0&lt;/span&gt;
+&lt;span class='output'&gt;Developer  6       1                        2 +1:-1&lt;/span&gt;
+&lt;span class='output'&gt;Developer  7       0                        0 +0:-0&lt;/span&gt;
+&lt;span class='output'&gt;Developer  8       0                        0 +0:-0&lt;/span&gt;
+&lt;span class='output'&gt;Developer  9       0                        0 +0:-0&lt;/span&gt;
+&lt;span class='output'&gt;Developer 10       1                        2 +1:-1&lt;/span&gt;
+&lt;span class='output'&gt;Developer 11       3                       17 +9:-8&lt;/span&gt;
+&lt;span class='output'&gt;Developer 12       2                      61 +57:-4&lt;/span&gt;
+&lt;span class='output'&gt;Developer 13      30                   545 +455:-90&lt;/span&gt;
+&lt;span class='output'&gt;Developer 14      30                   545 +455:-90&lt;/span&gt;
+&lt;span class='output'&gt;Developer 15       4                   117 +101:-16&lt;/span&gt;
+&lt;span class='output'&gt;Developer 16       1                        4 +2:-2&lt;/span&gt;
+&lt;span class='output'&gt;Developer 17       0                        0 +0:-0&lt;/span&gt;
+&lt;span class='output'&gt;Developer 18       1                      15 +13:-2&lt;/span&gt;
+&lt;span class='output'&gt;Developer 19       6                     79 +63:-16&lt;/span&gt;
+&lt;span class='output'&gt;Developer 20       3                       16 +8:-8&lt;/span&gt;
+&lt;span class='command'&gt;git_calc_avg_changes_per_dev 1y&lt;/span&gt;
+&lt;span class='output'&gt;78&lt;/span&gt;
+&lt;span class='command'&gt;source_count_lines ./module/A *.ext&lt;/span&gt;
+&lt;span class='output'&gt;3595&lt;/span&gt;
   &lt;/pre&gt;
 &lt;/div&gt;
 
@@ -119,7 +119,7 @@ $$
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_calc_avg_changes_per_dev&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_print_stats &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; --csv | awk -F&lt;span class=&quot;s1&quot;&gt;&#39;,&#39;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;{ print $3 }&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_print_stats &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; --csv | awk -F&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{ print $3 }'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;nv&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
     &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;n &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$data&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
         &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt;; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;i++&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
@@ -131,13 +131,13 @@ $$
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_print_stats&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;OLDIFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$IFS&lt;/span&gt;; &lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39; #&#39;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;OLDIFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$IFS&lt;/span&gt;; &lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' #'&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;committer &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_list_committers&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
         &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_count_commits &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;nv&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_count_line_changes &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--csv&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
-            &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;&#39;{ print $1 }&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;&#39;{ print $2 }&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+            &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{ print $1 }'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{ print $2 }'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
             &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,%s,%s,%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cc&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$al&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$dl&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;else
             &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%40s %7s %30s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$cc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
@@ -150,7 +150,7 @@ $$
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_list_committers&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    git log --all --format&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%cN&#39;&lt;/span&gt; | sort -u
+    git log --all --format&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'%cN'&lt;/span&gt; | sort -u
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Return number of commits for a given author.&lt;/p&gt;
@@ -162,9 +162,9 @@ $$
         --since&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
         --until&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y/%m/%d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
         --no-merges &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%h [%s] &amp;lt;%an&amp;gt;&#39;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'%h [%s] &amp;lt;%an&amp;gt;'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
         --abbrev-commit &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    | wc -l | tr -d &lt;span class=&quot;s1&quot;&gt;&#39;[[:space:]]&#39;&lt;/span&gt;
+    | wc -l | tr -d &lt;span class=&quot;s1&quot;&gt;'[[:space:]]'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Return number of line changes for a given author.&lt;/p&gt;
@@ -176,12 +176,12 @@ $$
         --since&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
         --until&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y/%m/%d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
         --no-merges &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%h [%s] &amp;lt;%an&amp;gt;&#39;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'%h [%s] &amp;lt;%an&amp;gt;'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
         --abbrev-commit &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
         --numstat &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    | awk &lt;span class=&quot;s1&quot;&gt;&#39;NF==3 \
+    | awk &lt;span class=&quot;s1&quot;&gt;'NF==3 \
         { plus+=$1; minus+=$2; total+=$1+$2 } END \
-        { printf(&quot;%d +%d:-%d\n&quot;, total, plus, minus) }&#39;&lt;/span&gt;
+        { printf(&quot;%d +%d:-%d\n&quot;, total, plus, minus) }'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Calculate date in the past from now.&lt;/p&gt;
