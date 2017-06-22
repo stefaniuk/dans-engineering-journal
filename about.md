@@ -4,6 +4,6 @@ title: About
 permalink: /about/
 ---
 
-I'm a polyglot programmer, full-stack developer and system designer with very good sysadmin skills.
+Dan is a polyglot programmer, full-stack developer, software engineer and cloud architect with many years of experience using different technologies. He has been working for a large organisations as well as completing small contracts for individuals.
 
-Currently, I live in Britain and work at the Health and Social Care Information Centre. However, I'm available for projects, so feel free to get in touch if you think I might be interested in.
+Currently, he lives in England and works at NHS Digital. However, he is still available for projects. So, feel free to get in touch if you think he might be interested in.
