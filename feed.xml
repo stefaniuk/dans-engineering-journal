@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Daniel Stefaniuk</title>
+    <title>Dan Stefaniuk</title>
     <description>This is my blog about programming.
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 22 Jun 2017 19:11:08 +0100</pubDate>
-    <lastBuildDate>Thu, 22 Jun 2017 19:11:08 +0100</lastBuildDate>
+    <pubDate>Tue, 22 Aug 2017 22:36:07 +0100</pubDate>
+    <lastBuildDate>Tue, 22 Aug 2017 22:36:07 +0100</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Create Consistent SSH User Accounts Across Multiple Linux Servers</title>
+        <description>&lt;p&gt;Due to a specific design requirements on a project I&amp;#39;ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Same GID and UID&lt;/li&gt;
+&lt;li&gt;Both password and public SSH key are set&lt;/li&gt;
+&lt;li&gt;Only the SSH key-based authentication is allowed&lt;/li&gt;
+&lt;li&gt;Privileged operations are executed without having to provide password (optional)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As you can tell this is an admin type account that is usually created just after the installation of an operating system.&lt;/p&gt;
+
+&lt;p&gt;Servers are up and running. Setting it up by hand could be an option. However, this would be a very old-fashioned approach though. I already have an automation tool in place. My favorite one is Ansible due to its simple architecture. Whether or not our configuration management framework is really advanced and facilitates tweaking of every aspect of an OS or a VM in my opinion the best language to script it is Bash. The change will be expressed in a most readable way that every sysadmin or platform engineer as they are called these days will understand. I&amp;#39;m going to use Ansible only as an orchestration tool to ship the script across and execute it without any user interaction.&lt;/p&gt;
+
+&lt;p&gt;Here is our sample input:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000
+&lt;span class=&quot;nv&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dan&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;s3cr3t&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;ssh_pk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGA++RFH4MfQ+697dSNS+p2Hx0a4X56pnDrMIbDozYUPcbY6rictsJvsakaF2yMlR9xW0nEWichdwB5dFxoVQ9E6n6ygRB5Q88j+SOsvVA+wjCJ0+Ittfrb9/dTrnuSWT58p1HKaCDOJdx402P41DZGw4Fq+JKTEvP+H0AbOdUifNMrZBPZ0kOv/0bNT839ytI6rKGi+3w42TN37k7H02TmAFPnip3YpLrUMNxMHulxyzaQ2ueAILGmPac2pz6hU6OflSCkptiV7yDYv/LnjFDSzagFP0dIr5jkT+XenpJOXgdXA/g3/4aOUHfo9tEQngC9ANKbaB3pRwAfGM35V35 my-key&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;But before we create such a user let&amp;#39;s check if the ID that we intent to use is available. If it is already taken we need to find the current user, terminate all his processes, change the UID and GID, then fix file ownership accordingly.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;uname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;grep &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; /etc/passwd | cut -f1 -d:&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;gname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;grep &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; /etc/group | cut -f1 -d:&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+ps -o pid -u &lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt; | xargs &lt;span class=&quot;nb&quot;&gt;kill&lt;/span&gt; -9
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;usermod -u 1111 &lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt;
+    find / -user &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; -exec chown -h 1111 &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi
+if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$gname&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;groupmod -g 1111 &lt;span class=&quot;nv&quot;&gt;$gname&lt;/span&gt;
+    find / -group &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; -exec chgrp -h 1111 &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now, we are ready to create a new system user.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;groupadd -g &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;
+useradd -m -s /bin/bash -u &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; -g &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt; -G sudo,docker &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$password&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | chpasswd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;SSH key-based authentication provides cryptographic strength that even extremely long passwords cannot offer. So, this will be our preferred method of granting access to a system and ...&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;mkdir -p /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ssh_pk&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &amp;gt;&amp;gt; /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh/authorized_keys
+chmod 600 /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh/authorized_keys
+chown -R &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt; /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;... we make sure the above is the only method of authentication by changing the OpenSSL daemon configuration.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;sed -i &lt;span class=&quot;s2&quot;&gt;&quot;s/^PasswordAuthentication yes/#PasswordAuthentication yes/g&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    /etc/ssh/sshd_config&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The last thing we may want to do is to allow privileged operations without password. This may come handy while the same system account is used to perform other automated tasks that normally would prompt for a user password.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ALL=(ALL) NOPASSWD: ALL&quot;&lt;/span&gt; &amp;gt; /etc/sudoers.d/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;There we have it. A simple way to test it could be by loading the private key locally using the &lt;code&gt;ssh-add&lt;/code&gt; command and trying to &lt;code&gt;ssh&lt;/code&gt; into the server.&lt;/p&gt;
+
+&lt;p&gt;In my next blog post I will show how to create a minimal Ansible orchestration script.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 22 Aug 2017 22:29:00 +0100</pubDate>
+        <link>http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers</link>
+        <guid isPermaLink="true">http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers</guid>
+        
+        
+      </item>
     
       <item>
         <title>An Alternative Approach to Estimates</title>
