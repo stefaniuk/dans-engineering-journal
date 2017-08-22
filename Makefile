@@ -1,18 +1,24 @@
-push: commit
-	@cd _site \
+blog:
+	JEKYLL_ENV=development jekyll server --drafts
+test:
+	JEKYLL_ENV=production jekyll server
+publish: save
+	cd _site \
 		&& git push
-commit: build
-	@cd _site \
+save: update
+	cd _site \
 		&& touch .nojekyll \
 		&& git add -A \
-		&& git commit -m "Automated build"
-build: clean
-	@cd _site \
+		&& git commit -m "Publish"
+update: clean
+	cd _site \
 		&& git clone git@github.com:stefaniuk/stefaniuk.github.io.git . \
 		&& git checkout master \
 		&& cd .. \
 		&& JEKYLL_ENV=production jekyll build
 clean:
-	@rm -rf .sass-cache
-	@rm -rf _site
-	@mkdir _site
+	rm -rf .sass-cache
+	rm -rf _site
+	mkdir _site
+
+.SILENT:

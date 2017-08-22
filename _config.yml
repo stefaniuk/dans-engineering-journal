@@ -1,7 +1,7 @@
 url: http://stefaniuk.co.uk
 permalink: /:title
 
-title: Daniel Stefaniuk
+title: Dan Stefaniuk
 description: >
   This is my blog about programming.
 
@@ -10,6 +10,7 @@ github_username: stefaniuk
 linkedin_username: dstefaniuk
 twitter_username: danstefaniuk
 
+timezone: Europe/London
 markdown: redcarpet
 
 gems:

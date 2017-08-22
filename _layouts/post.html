@@ -10,7 +10,7 @@ layout: default
       {% capture updated %}{{ page.last_modified_at | date: '%Y%m%d' }}{% endcapture %}
       {% if created < updated %}
         <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">
-          &nbsp;&nbsp;&nbsp;( Updated on {{ page.last_modified_at | date: "%-d %B %Y" }} )
+          <!--&nbsp;&nbsp;&nbsp;( Updated on {{ page.last_modified_at | date: "%-d %B %Y" }} )-->
         </time>
       {% endif %}
     </p>
