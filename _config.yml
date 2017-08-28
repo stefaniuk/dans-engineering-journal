@@ -3,11 +3,12 @@ permalink: /:title
 
 title: Dan Stefaniuk
 description: >
-  This is my blog about programming.
+  A blog about software development.
 
 email: daniel.stefaniuk@gmail.com
 github_username: stefaniuk
 linkedin_username: dstefaniuk
+stackoverflow_username: 472150
 twitter_username: danstefaniuk
 
 timezone: Europe/London
