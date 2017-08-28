@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dan Stefaniuk</title>
-    <description>This is my blog about programming.
+    <description>A blog about software development.
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Aug 2017 22:36:07 +0100</pubDate>
-    <lastBuildDate>Tue, 22 Aug 2017 22:36:07 +0100</lastBuildDate>
+    <pubDate>Mon, 28 Aug 2017 19:02:18 +0100</pubDate>
+    <lastBuildDate>Mon, 28 Aug 2017 19:02:18 +0100</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
