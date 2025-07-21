@@ -2,90 +2,82 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dan Stefaniuk</title>
-    <description>A blog about software development.
+    <description>A blog about software engineering
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 02 Sep 2017 22:42:47 +0100</pubDate>
-    <lastBuildDate>Sat, 02 Sep 2017 22:42:47 +0100</lastBuildDate>
-    <generator>Jekyll v3.4.3</generator>
+    <pubDate>Mon, 21 Jul 2025 23:08:25 +0100</pubDate>
+    <lastBuildDate>Mon, 21 Jul 2025 23:08:25 +0100</lastBuildDate>
+    <generator>Jekyll v4.3.4</generator>
     
       <item>
         <title>A Revised Way of Generating SSH Keys</title>
-        <description>&lt;p&gt;I&amp;#39;ve been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They&amp;#39;ve been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the &lt;a href=&quot;https://en.wikipedia.org/wiki/Elliptic_curve_cryptography&quot;&gt;&lt;strong&gt;elliptic curve cryptography&lt;/strong&gt;&lt;/a&gt; has become much more popular in the recent decade.&lt;/p&gt;
+        <description>&lt;p&gt;I’ve been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They’ve been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the &lt;a href=&quot;https://en.wikipedia.org/wiki/Elliptic_curve_cryptography&quot;&gt;&lt;strong&gt;elliptic curve cryptography&lt;/strong&gt;&lt;/a&gt; has become much more popular in the recent decade.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;&amp;quot;The primary benefit promised by elliptic curve cryptography is a smaller key size, reducing storage and transmission requirements, i.e. that an elliptic curve group could provide the same level of security afforded by an RSA-based system with a large modulus and correspondingly larger key: for example, a 256-bit elliptic curve public key should provide comparable security to a 3072-bit RSA public key.&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;“The primary benefit promised by elliptic curve cryptography is a smaller key size, reducing storage and transmission requirements, i.e. that an elliptic curve group could provide the same level of security afforded by an RSA-based system with a large modulus and correspondingly larger key: for example, a 256-bit elliptic curve public key should provide comparable security to a 3072-bit RSA public key.”&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;My take on it is that if this new signature algorithm can give us similar or even &lt;strong&gt;better level of security&lt;/strong&gt; (yes, its implementation is more secure than RSA) with a &lt;strong&gt;comparable flexibility&lt;/strong&gt; using &lt;strong&gt;less resources&lt;/strong&gt;, it is definitely time to adopt it. For anyone who is interested in a detailed explanation how exactly it works a lot of papers have been published providing mathematical rationale behind it.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://ed25519.cr.yp.to/&quot;&gt;&lt;strong&gt;Ed25519&lt;/strong&gt;&lt;/a&gt; is a digital signature scheme based on Twisted Edwards curves. Its has been &lt;a href=&quot;https://github.com/openssh/openssh-portable/commit/5be9d9e3cbd9c66f24745d25bf2e809c1d158ee0#diff-e71776f50c4432cb9cd999367424de20&quot;&gt;added to the OpenSSH codebase&lt;/a&gt; on the 7th of December 2013. Since then no issue was reported against it.&lt;/p&gt;
 
-&lt;p&gt;The easies way to generate such an SSH key is by using the &lt;code&gt;ssh-keygen&lt;/code&gt; command of the OpenSSH package:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;ssh-keygen -t ed25519 -o -a 100
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The &lt;code&gt;-t ed25519&lt;/code&gt; parameter is used to generate two asymmetrical keys based on the elliptic curve cryptography. The output is produced in the new &lt;a href=&quot;https://tools.ietf.org/html/rfc4716&quot;&gt;RFC4716&lt;/a&gt; format rather than the well known PEM and the flag &lt;code&gt;-o&lt;/code&gt; to support it is implied by default so it can be omitted. It enforces use of a modern key derivation function (KDF) powered by combination of &lt;a href=&quot;https://github.com/openssh/openssh-portable/blob/f104da263de995f66b6861b4f3368264ee483d7f/openbsd-compat/bcrypt_pbkdf.c&quot;&gt;PBKDF2 and bcrypt&lt;/a&gt;. In practice this means that our keypair is more resistant to brute-force password cracking. This is especially true when combined with the &lt;code&gt;-a &amp;lt;rounds&amp;gt;&lt;/code&gt; parameter which specifies the number of key derivation function rounds to be used. Higher the number more time it takes to unlock the key.&lt;/p&gt;
+&lt;p&gt;The easies way to generate such an SSH key is by using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh-keygen&lt;/code&gt; command of the OpenSSH package:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen -t ed25519 -o -a 100
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-t ed25519&lt;/code&gt; parameter is used to generate two asymmetrical keys based on the elliptic curve cryptography. The output is produced in the new &lt;a href=&quot;https://tools.ietf.org/html/rfc4716&quot;&gt;RFC4716&lt;/a&gt; format rather than the well known PEM and the flag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-o&lt;/code&gt; to support it is implied by default so it can be omitted. It enforces use of a modern key derivation function (KDF) powered by combination of &lt;a href=&quot;https://github.com/openssh/openssh-portable/blob/f104da263de995f66b6861b4f3368264ee483d7f/openbsd-compat/bcrypt_pbkdf.c&quot;&gt;PBKDF2 and bcrypt&lt;/a&gt;. In practice this means that our keypair is more resistant to brute-force password cracking. This is especially true when combined with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-a &amp;lt;rounds&amp;gt;&lt;/code&gt; parameter which specifies the number of key derivation function rounds to be used. Higher the number more time it takes to unlock the key.&lt;/p&gt;
 
 &lt;p&gt;Time to see the result of the above command. Here is an example of my revised way of generating SSH keys along with content of the files.&lt;/p&gt;
 
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;div class=&quot;terminal&quot;&gt;
-  &lt;nav&gt;
-    &lt;a href=&quot;#&quot; class=&quot;close&quot;&gt;close&lt;/a&gt;
-    &lt;a href=&quot;#&quot; class=&quot;minimize&quot;&gt;minimize&lt;/a&gt;
-    &lt;a href=&quot;#&quot; class=&quot;deactivate&quot;&gt;deactivate&lt;/a&gt;
-  &lt;/nav&gt;
-  &lt;h3 class=&quot;title&quot;&gt;Terminal&lt;/h3&gt;
-  &lt;pre&gt;
-&lt;span class='command'&gt;ssh-keygen -t ed25519 -a 100 -C &amp;quot;my-key-comment&amp;quot; -f my-key-name&lt;/span&gt;
-&lt;span class='output'&gt;Generating public/private ed25519 key pair.&lt;/span&gt;
-&lt;span class='output'&gt;Enter passphrase (empty for no passphrase):&lt;/span&gt;
-&lt;span class='output'&gt;Enter same passphrase again:&lt;/span&gt;
-&lt;span class='output'&gt;Your identification has been saved in my-key-name.&lt;/span&gt;
-&lt;span class='output'&gt;Your public key has been saved in my-key-name.pub.&lt;/span&gt;
-&lt;span class='output'&gt;The key fingerprint is:&lt;/span&gt;
-&lt;span class='output'&gt;SHA256:GIh0NDZ6WhZLyFJxq8dpbJ7aAwfEpJdgBsgxs/5NziM my-key-comment&lt;/span&gt;
-&lt;span class='output'&gt;The key&amp;#39;s randomart image is:&lt;/span&gt;
-&lt;span class='output'&gt;+--[ED25519 256]--+&lt;/span&gt;
-&lt;span class='output'&gt;|*@*+X            |&lt;/span&gt;
-&lt;span class='output'&gt;|==OO B           |&lt;/span&gt;
-&lt;span class='output'&gt;|.+= B .          |&lt;/span&gt;
-&lt;span class='output'&gt;|...O . o         |&lt;/span&gt;
-&lt;span class='output'&gt;| .o.B.. S        |&lt;/span&gt;
-&lt;span class='output'&gt;|  o=*.           |&lt;/span&gt;
-&lt;span class='output'&gt;|   Eo=           |&lt;/span&gt;
-&lt;span class='output'&gt;|   oo .          |&lt;/span&gt;
-&lt;span class='output'&gt;|  . ..           |&lt;/span&gt;
-&lt;span class='output'&gt;+----[SHA256]-----+&lt;/span&gt;
-&lt;span class='command'&gt;puttygen my-key-name -C &amp;quot;my-key-comment&amp;quot; -o my-key-name.ppk&lt;/span&gt;
-&lt;span class='output'&gt;Enter passphrase to load key:&lt;/span&gt;
-&lt;span class='command'&gt;ls -la my-key-name*&lt;/span&gt;
-&lt;span class='output'&gt;-rw-------  1 dan  staff  464  3 Sep 21:27 my-key-name&lt;/span&gt;
-&lt;span class='output'&gt;-rw-------  1 dan  staff  304  3 Sep 21:27 my-key-name.ppk&lt;/span&gt;
-&lt;span class='output'&gt;-rw-r--r--  1 dan  staff   96  3 Sep 21:27 my-key-name.pub&lt;/span&gt;
-&lt;span class='command'&gt;cat my-key-name&lt;/span&gt;
-&lt;span class='output'&gt;-----BEGIN OPENSSH PRIVATE KEY-----&lt;/span&gt;
-&lt;span class='output'&gt;b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jYmMAAAAGYmNyeXB0AAAAGAAAABA+HlsP7o&lt;/span&gt;
-&lt;span class='output'&gt;3Jzj8b+N+WhbEuAAAAZAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIErbaYC9ZHLEtCY3&lt;/span&gt;
-&lt;span class='output'&gt;uDDl0LqRwlxLSGoHO1IBrvhzikyVAAAAoD632B3FjYbZmkLco+r7BVIvK3r1Cn2dJE8Q4N&lt;/span&gt;
-&lt;span class='output'&gt;l9IES8bieUYPxDi3uu3gaIcWwygdHTM5zFMqWePJgNP2M0jvfLkQLbaJd816D/BYwUGcTR&lt;/span&gt;
-&lt;span class='output'&gt;3Mgo7Rnf1qqoen70rwl67bbTaN8D0M5dNL5EkYdKvOoiRhoyQEIdptNOWF6rjwMyfloWw9&lt;/span&gt;
-&lt;span class='output'&gt;JMKCOfYrSUB4pDf6mgbWw7+60IUrIc+BeAQgc=&lt;/span&gt;
-&lt;span class='output'&gt;-----END OPENSSH PRIVATE KEY-----&lt;/span&gt;
-&lt;span class='command'&gt;cat my-key-name.pub&lt;/span&gt;
-&lt;span class='output'&gt;ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIErbaYC9ZHLEtCY3uDDl0LqRwlxLSGoHO1IBrvhzikyV my-key-comment&lt;/span&gt;
-&lt;span class='command'&gt;cat my-key-name.ppk&lt;/span&gt;
-&lt;span class='output'&gt;PuTTY-User-Key-File-2: ssh-ed25519&lt;/span&gt;
-&lt;span class='output'&gt;Encryption: aes256-cbc&lt;/span&gt;
-&lt;span class='output'&gt;Comment: my-key-comment&lt;/span&gt;
-&lt;span class='output'&gt;Public-Lines: 2&lt;/span&gt;
-&lt;span class='output'&gt;AAAAC3NzaC1lZDI1NTE5AAAAIErbaYC9ZHLEtCY3uDDl0LqRwlxLSGoHO1IBrvhz&lt;/span&gt;
-&lt;span class='output'&gt;ikyV&lt;/span&gt;
-&lt;span class='output'&gt;Private-Lines: 1&lt;/span&gt;
-&lt;span class='output'&gt;63bsFlto1i20tXwFu3xveXsGtDD7hEmsM0FrIGqviHn4O2xXG9Pwjmhmwf+z8rJe&lt;/span&gt;
-&lt;span class='output'&gt;Private-MAC: 72102d9a0f158f653577df276fcf329b482df329&lt;/span&gt;
-  &lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; ed25519 &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; 100 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my-key-comment&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; my-key-name
+Generating public/private ed25519 key pair.
+Enter passphrase &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;empty &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;no passphrase&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+Enter same passphrase again:
+Your identification has been saved &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;my-key-name.
+Your public key has been saved &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;my-key-name.pub.
+The key fingerprint is:
+SHA256:GIh0NDZ6WhZLyFJxq8dpbJ7aAwfEpJdgBsgxs/5NziM my-key-comment
+The key&lt;span class=&quot;s1&quot;&gt;&apos;s randomart image is:
++--[ED25519 256]--+
+|*@*+X            |
+|==OO B           |
+|.+= B .          |
+|...O . o         |
+| .o.B.. S        |
+|  o=*.           |
+|   Eo=           |
+|   oo .          |
+|  . ..           |
++----[SHA256]-----+
+$ puttygen my-key-name -C &quot;my-key-comment&quot; -o my-key-name.ppk
+Enter passphrase to load key:
+$ ls -la my-key-name*
+-rw-------  1 dan  staff  464  3 Sep 21:27 my-key-name
+-rw-------  1 dan  staff  304  3 Sep 21:27 my-key-name.ppk
+-rw-r--r--  1 dan  staff   96  3 Sep 21:27 my-key-name.pub
+$ cat my-key-name
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jYmMAAAAGYmNyeXB0AAAAGAAAABA+HlsP7o
+3Jzj8b+N+WhbEuAAAAZAAAAAEAAAAzAAAAC3NzaC1lZDI1NTE5AAAAIErbaYC9ZHLEtCY3
+uDDl0LqRwlxLSGoHO1IBrvhzikyVAAAAoD632B3FjYbZmkLco+r7BVIvK3r1Cn2dJE8Q4N
+l9IES8bieUYPxDi3uu3gaIcWwygdHTM5zFMqWePJgNP2M0jvfLkQLbaJd816D/BYwUGcTR
+3Mgo7Rnf1qqoen70rwl67bbTaN8D0M5dNL5EkYdKvOoiRhoyQEIdptNOWF6rjwMyfloWw9
+JMKCOfYrSUB4pDf6mgbWw7+60IUrIc+BeAQgc=
+-----END OPENSSH PRIVATE KEY-----
+$ cat my-key-name.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIErbaYC9ZHLEtCY3uDDl0LqRwlxLSGoHO1IBrvhzikyV my-key-comment
+$ cat my-key-name.ppk
+PuTTY-User-Key-File-2: ssh-ed25519
+Encryption: aes256-cbc
+Comment: my-key-comment
+Public-Lines: 2
+AAAAC3NzaC1lZDI1NTE5AAAAIErbaYC9ZHLEtCY3uDDl0LqRwlxLSGoHO1IBrvhz
+ikyV
+Private-Lines: 1
+63bsFlto1i20tXwFu3xveXsGtDD7hEmsM0FrIGqviHn4O2xXG9Pwjmhmwf+z8rJe
+Private-MAC: 72102d9a0f158f653577df276fcf329b482df329
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sat, 02 Sep 2017 22:16:00 +0100</pubDate>
         <link>http://stefaniuk.co.uk/a-revised-way-of-generating-ssh-keys</link>
@@ -96,63 +88,63 @@
     
       <item>
         <title>Create Consistent SSH User Accounts Across Multiple Linux Servers</title>
-        <description>&lt;p&gt;Due to a specific design requirements on a project I&amp;#39;ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:&lt;/p&gt;
+        <description>&lt;p&gt;Due to a specific design requirements on a project I’ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Same GID and UID&lt;/li&gt;
-&lt;li&gt;Both password and public SSH key are set&lt;/li&gt;
-&lt;li&gt;Only the SSH key-based authentication is allowed&lt;/li&gt;
-&lt;li&gt;Privileged operations are executed without having to provide password (optional)&lt;/li&gt;
+  &lt;li&gt;Same GID and UID&lt;/li&gt;
+  &lt;li&gt;Both password and public SSH key are set&lt;/li&gt;
+  &lt;li&gt;Only the SSH key-based authentication is allowed&lt;/li&gt;
+  &lt;li&gt;Privileged operations are executed without having to provide password (optional)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;As you can tell this is an admin type account that is usually created just after the installation of an operating system.&lt;/p&gt;
 
-&lt;p&gt;Servers are up and running. Setting it up by hand could be an option. However, this would be a very old-fashioned approach though. I already have an automation tool in place. My favorite one is Ansible due to its simple architecture. Whether or not our configuration management framework is really advanced and facilitates tweaking of every aspect of an OS or a VM in my opinion the best language to script it is Bash. The change will be expressed in a most readable way that every sysadmin or platform engineer as they are called these days will understand. I&amp;#39;m going to use Ansible only as an orchestration tool to ship the script across and execute it without any user interaction.&lt;/p&gt;
+&lt;p&gt;Servers are up and running. Setting it up by hand could be an option. However, this would be a very old-fashioned approach though. I already have an automation tool in place. My favorite one is Ansible due to its simple architecture. Whether or not our configuration management framework is really advanced and facilitates tweaking of every aspect of an OS or a VM in my opinion the best language to script it is Bash. The change will be expressed in a most readable way that every sysadmin or platform engineer as they are called these days will understand. I’m going to use Ansible only as an orchestration tool to ship the script across and execute it without any user interaction.&lt;/p&gt;
 
 &lt;p&gt;Here is our sample input:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000
 &lt;span class=&quot;nv&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dan&quot;&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;s3cr3t&quot;&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;ssh_pk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGA++RFH4MfQ+697dSNS+p2Hx0a4X56pnDrMIbDozYUPcbY6rictsJvsakaF2yMlR9xW0nEWichdwB5dFxoVQ9E6n6ygRB5Q88j+SOsvVA+wjCJ0+Ittfrb9/dTrnuSWT58p1HKaCDOJdx402P41DZGw4Fq+JKTEvP+H0AbOdUifNMrZBPZ0kOv/0bNT839ytI6rKGi+3w42TN37k7H02TmAFPnip3YpLrUMNxMHulxyzaQ2ueAILGmPac2pz6hU6OflSCkptiV7yDYv/LnjFDSzagFP0dIr5jkT+XenpJOXgdXA/g3/4aOUHfo9tEQngC9ANKbaB3pRwAfGM35V35 my-key&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;But before we create such a user let&amp;#39;s check if the ID that we intent to use is available. If it is already taken we need to find the current user, terminate all his processes, change the UID and GID, then fix file ownership accordingly.&lt;/p&gt;
+&lt;p&gt;But before we create such a user let’s check if the ID that we intent to use is available. If it is already taken we need to find the current user, terminate all his processes, change the UID and GID, then fix file ownership accordingly.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;uname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;grep &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; /etc/passwd | cut -f1 -d:&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;gname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;grep &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; /etc/group | cut -f1 -d:&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-ps -o pid -u &lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt; | xargs &lt;span class=&quot;nb&quot;&gt;kill&lt;/span&gt; -9
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
-    &lt;/span&gt;usermod -u 1111 &lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt;
-    find / -user &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; -exec chown -h 1111 &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;uname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; /etc/passwd | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f1&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;:&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;gname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; /etc/group | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f1&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;:&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+ps &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; pid &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt; | xargs &lt;span class=&quot;nb&quot;&gt;kill&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-9&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; 1111 &lt;span class=&quot;nv&quot;&gt;$uname&lt;/span&gt;
+    find / &lt;span class=&quot;nt&quot;&gt;-user&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; 1111 &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;fi
-if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -n &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$gname&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
-    &lt;/span&gt;groupmod -g 1111 &lt;span class=&quot;nv&quot;&gt;$gname&lt;/span&gt;
-    find / -group &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; -exec chgrp -h 1111 &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;
+if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$gname&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;groupmod &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; 1111 &lt;span class=&quot;nv&quot;&gt;$gname&lt;/span&gt;
+    find / &lt;span class=&quot;nt&quot;&gt;-group&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chgrp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; 1111 &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Now, we are ready to create a new system user.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;groupadd -g &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;
-useradd -m -s /bin/bash -u &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; -g &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt; -G sudo,docker &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;groupadd &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;
+useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /bin/bash &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;,docker &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$password&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | chpasswd&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;SSH key-based authentication provides cryptographic strength that even extremely long passwords cannot offer. So, this will be our preferred method of granting access to a system and ...&lt;/p&gt;
+&lt;p&gt;SSH key-based authentication provides cryptographic strength that even extremely long passwords cannot offer. So, this will be our preferred method of granting access to a system and …&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;mkdir -p /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ssh_pk&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &amp;gt;&amp;gt; /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh/authorized_keys
-chmod 600 /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh/authorized_keys
-chown -R &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt; /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ssh_pk&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh/authorized_keys
+&lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;600 /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;/.ssh/authorized_keys
+&lt;span class=&quot;nb&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt; /home/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;... we make sure the above is the only method of authentication by changing the OpenSSL daemon configuration.&lt;/p&gt;
+&lt;p&gt;… we make sure the above is the only method of authentication by changing the OpenSSL daemon configuration.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;sed -i &lt;span class=&quot;s2&quot;&gt;&quot;s/^PasswordAuthentication yes/#PasswordAuthentication yes/g&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;s/^PasswordAuthentication yes/#PasswordAuthentication yes/g&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     /etc/ssh/sshd_config&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The last thing we may want to do is to allow privileged operations without password. This may come handy while the same system account is used to perform other automated tasks that normally would prompt for a user password.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ALL=(ALL) NOPASSWD: ALL&quot;&lt;/span&gt; &amp;gt; /etc/sudoers.d/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ALL=(ALL) NOPASSWD: ALL&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /etc/sudoers.d/&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;There we have it. A simple way to test it could be by loading the private key locally using the &lt;code&gt;ssh-add&lt;/code&gt; command and trying to &lt;code&gt;ssh&lt;/code&gt; into the server.&lt;/p&gt;
+&lt;p&gt;There we have it. A simple way to test it could be by loading the private key locally using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh-add&lt;/code&gt; command and trying to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh&lt;/code&gt; into the server.&lt;/p&gt;
 
 &lt;p&gt;In my next blog post I will show how to create a minimal Ansible orchestration script.&lt;/p&gt;
 </description>
@@ -165,117 +157,106 @@ chown -R &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;:&lt;span class=
     
       <item>
         <title>An Alternative Approach to Estimates</title>
-        <description>&lt;h2&gt;Problem&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;problem&quot;&gt;Problem&lt;/h2&gt;
 
 &lt;p&gt;A while ago I was asked to plan one of the last phases of development on a project that required re-architecture of the data access layer. One of my tasks was to estimate an effort to replace code that communicates with a legacy back-end. The new code, instead of directly connecting to a database should consume JSON-based REST API endpoints. Due to time constraints and to mitigate the risk to bring the service down this change supposed to be done in as non-invasive way as possible.&lt;/p&gt;
 
 &lt;p&gt;Objectives&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Functionality of the application must remain unchanged for the end user&lt;/li&gt;
+  &lt;li&gt;Functionality of the application must remain unchanged for the end user&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Facts&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;It is a simple MVC application built upon a reach domain model&lt;/li&gt;
-&lt;li&gt;Books like &lt;em&gt;&lt;a href=&quot;https://www.amazon.co.uk/Design-patterns-elements-reusable-object-oriented/dp/0201633612&quot;&gt;Design Patterns&lt;/a&gt;&lt;/em&gt; and &lt;em&gt;&lt;a href=&quot;https://www.amazon.co.uk/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882&quot;&gt;Clean Code&lt;/a&gt;&lt;/em&gt; were probably not that popular at the time of writing the software&lt;/li&gt;
+  &lt;li&gt;It is a simple MVC application built upon a reach domain model&lt;/li&gt;
+  &lt;li&gt;Books like &lt;em&gt;&lt;a href=&quot;https://www.amazon.co.uk/Design-patterns-elements-reusable-object-oriented/dp/0201633612&quot;&gt;Design Patterns&lt;/a&gt;&lt;/em&gt; and &lt;em&gt;&lt;a href=&quot;https://www.amazon.co.uk/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882&quot;&gt;Clean Code&lt;/a&gt;&lt;/em&gt; were probably not that popular at the time of writing the software&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Issues&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Developers&amp;#39; skills in our team differ much&lt;/li&gt;
-&lt;li&gt;Complexity of the code that needs to be refactored varies from module to module&lt;/li&gt;
-&lt;li&gt;We have never done that before&lt;/li&gt;
+  &lt;li&gt;Developers’ skills in our team differ much&lt;/li&gt;
+  &lt;li&gt;Complexity of the code that needs to be refactored varies from module to module&lt;/li&gt;
+  &lt;li&gt;We have never done that before&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Assumptions&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;We know the product already&lt;/li&gt;
-&lt;li&gt;Most of the code logic and flow remain the same&lt;/li&gt;
-&lt;li&gt;It should take no longer to refactor the code than implementing that functionality from scratch&lt;/li&gt;
-&lt;li&gt;A lot of work is repetitive and follows a pattern&lt;/li&gt;
+  &lt;li&gt;We know the product already&lt;/li&gt;
+  &lt;li&gt;Most of the code logic and flow remain the same&lt;/li&gt;
+  &lt;li&gt;It should take no longer to refactor the code than implementing that functionality from scratch&lt;/li&gt;
+  &lt;li&gt;A lot of work is repetitive and follows a pattern&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;How to take the above factors into account and produce accurate estimates for the management?&lt;/p&gt;
 
-&lt;h2&gt;Solution&lt;/h2&gt;
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
 
-&lt;p&gt;I was not able to find anyone who faced similar technical problems with the platform we use. This tells me something about our design, anyway... Yes, I heard about &lt;a href=&quot;http://csse.usc.edu/tools/COCOMOII.php&quot;&gt;COCOMO II - Constructive Cost Model&lt;/a&gt;. However, I still decided to come up with my simplistic formula.&lt;/p&gt;
+&lt;p&gt;I was not able to find anyone who faced similar technical problems with the platform we use. This tells me something about our design, anyway… Yes, I heard about &lt;a href=&quot;http://csse.usc.edu/tools/COCOMOII.php&quot;&gt;COCOMO II - Constructive Cost Model&lt;/a&gt;. However, I still decided to come up with my simplistic formula.&lt;/p&gt;
 
-&lt;p&gt;&amp;nbsp;&amp;nbsp;
-$$\scriptsize
+&lt;p&gt;  
+\(\scriptsize
 {
-    \sum_{i=0}^n componentManDays_i = totalManDays
-}
-$$
-$$\scriptsize
+    \sum_{i=0}^n componentManDays\_i = totalManDays
+}\)
+\(\scriptsize
 {
-    \frac{linesOfCode_i}{avgLinesOfCodePerHour \times 6h} \times complexityFactor_i \times contingency = componentManDays_i
-}
-$$
-&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+    \frac{linesOfCode\_i}{avgLinesOfCodePerHour \times 6h} \times complexityFactor\_i \times contingency = componentManDays\_i
+}\)
+  &lt;/p&gt;
 
 &lt;p&gt;Why? Because whichever method is used the outcome is always a guesstimate. I found out that &lt;strong&gt;it is so much dependent on motivation of individual team members&lt;/strong&gt; as well as their willingness to learn and contribute. This can not be expressed by any mathematical equation.&lt;/p&gt;
 
 &lt;p&gt;I usually add 20% contingency to my calculations and set complexity factor to &lt;em&gt;cf=1&lt;/em&gt; for a simple code in higher layers of an application architecture, &lt;em&gt;cf=2&lt;/em&gt; for components that require more analytical and problem solving skills and up to &lt;em&gt;cf=3&lt;/em&gt; for tasks that require attention of a polyglot programmer.&lt;/p&gt;
 
-&lt;h2&gt;Automation&lt;/h2&gt;
+&lt;h2 id=&quot;automation&quot;&gt;Automation&lt;/h2&gt;
 
-&lt;p&gt;After considering a manual approach of producing my estimates for each module and component I decided to automate that process. Quick, and in my opinion relatively reliable solution was to base the calculations on an ability to change number of lines of code by an average developer in our team in a selected period of time. There are number of issues with this approach. For example, &lt;strong&gt;data for the empirical analysis must come from a project with a comparable architecture, technology stack, complexity and codebase&lt;/strong&gt;. Fortunately, we have been working on this software already for over a year delivering new functionality. So, all the data I needed were in the version control system... The only thing I needed to do is write a script that does the rest of the work for me.&lt;/p&gt;
+&lt;p&gt;After considering a manual approach of producing my estimates for each module and component I decided to automate that process. Quick, and in my opinion relatively reliable solution was to base the calculations on an ability to change number of lines of code by an average developer in our team in a selected period of time. There are number of issues with this approach. For example, &lt;strong&gt;data for the empirical analysis must come from a project with a comparable architecture, technology stack, complexity and codebase&lt;/strong&gt;. Fortunately, we have been working on this software already for over a year delivering new functionality. So, all the data I needed were in the version control system… The only thing I needed to do is write a script that does the rest of the work for me.&lt;/p&gt;
 
 &lt;p&gt;Here is the usage example followed by some of the Bash functions to help to extract relevant information from Git. I used an open source project to produce the output.&lt;/p&gt;
 
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
 
-&lt;div class=&quot;terminal&quot;&gt;
-  &lt;nav&gt;
-    &lt;a href=&quot;#&quot; class=&quot;close&quot;&gt;close&lt;/a&gt;
-    &lt;a href=&quot;#&quot; class=&quot;minimize&quot;&gt;minimize&lt;/a&gt;
-    &lt;a href=&quot;#&quot; class=&quot;deactivate&quot;&gt;deactivate&lt;/a&gt;
-  &lt;/nav&gt;
-  &lt;h3 class=&quot;title&quot;&gt;Terminal&lt;/h3&gt;
-  &lt;pre&gt;
-&lt;span class='command'&gt;git_print_stats 1y # for Linux use &amp;quot;1 year&amp;quot;&lt;/span&gt;
-&lt;span class='output'&gt;Developer  1       1                     46 +23:-23&lt;/span&gt;
-&lt;span class='output'&gt;Developer  2       1                     79 +44:-35&lt;/span&gt;
-&lt;span class='output'&gt;Developer  3       0                        0 +0:-0&lt;/span&gt;
-&lt;span class='output'&gt;Developer  4       5                      46 +40:-6&lt;/span&gt;
-&lt;span class='output'&gt;Developer  5       0                        0 +0:-0&lt;/span&gt;
-&lt;span class='output'&gt;Developer  6       1                        2 +1:-1&lt;/span&gt;
-&lt;span class='output'&gt;Developer  7       0                        0 +0:-0&lt;/span&gt;
-&lt;span class='output'&gt;Developer  8       0                        0 +0:-0&lt;/span&gt;
-&lt;span class='output'&gt;Developer  9       0                        0 +0:-0&lt;/span&gt;
-&lt;span class='output'&gt;Developer 10       1                        2 +1:-1&lt;/span&gt;
-&lt;span class='output'&gt;Developer 11       3                       17 +9:-8&lt;/span&gt;
-&lt;span class='output'&gt;Developer 12       2                      61 +57:-4&lt;/span&gt;
-&lt;span class='output'&gt;Developer 13      30                   545 +455:-90&lt;/span&gt;
-&lt;span class='output'&gt;Developer 14      30                   545 +455:-90&lt;/span&gt;
-&lt;span class='output'&gt;Developer 15       4                   117 +101:-16&lt;/span&gt;
-&lt;span class='output'&gt;Developer 16       1                        4 +2:-2&lt;/span&gt;
-&lt;span class='output'&gt;Developer 17       0                        0 +0:-0&lt;/span&gt;
-&lt;span class='output'&gt;Developer 18       1                      15 +13:-2&lt;/span&gt;
-&lt;span class='output'&gt;Developer 19       6                     79 +63:-16&lt;/span&gt;
-&lt;span class='output'&gt;Developer 20       3                       16 +8:-8&lt;/span&gt;
-&lt;span class='command'&gt;git_calc_avg_changes_per_dev 1y&lt;/span&gt;
-&lt;span class='output'&gt;78&lt;/span&gt;
-&lt;span class='command'&gt;source_count_lines ./module/A *.ext&lt;/span&gt;
-&lt;span class='output'&gt;3595&lt;/span&gt;
-  &lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git_print_stats 1y &lt;span class=&quot;c&quot;&gt;# for Linux use &quot;1 year&quot;&lt;/span&gt;
+Developer  1       1                     46 +23:-23
+Developer  2       1                     79 +44:-35
+Developer  3       0                        0 +0:-0
+Developer  4       5                      46 +40:-6
+Developer  5       0                        0 +0:-0
+Developer  6       1                        2 +1:-1
+Developer  7       0                        0 +0:-0
+Developer  8       0                        0 +0:-0
+Developer  9       0                        0 +0:-0
+Developer 10       1                        2 +1:-1
+Developer 11       3                       17 +9:-8
+Developer 12       2                      61 +57:-4
+Developer 13      30                   545 +455:-90
+Developer 14      30                   545 +455:-90
+Developer 15       4                   117 +101:-16
+Developer 16       1                        4 +2:-2
+Developer 17       0                        0 +0:-0
+Developer 18       1                      15 +13:-2
+Developer 19       6                     79 +63:-16
+Developer 20       3                       16 +8:-8
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git_calc_avg_changes_per_dev 1y
+78
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;source_count_lines ./module/A &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.ext
+3595
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;  &lt;/p&gt;
 
 &lt;p&gt;Calculate average line changes per developer in a given period of time.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_calc_avg_changes_per_dev&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_print_stats &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; --csv | awk -F&lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{ print $3 }'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
-    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;n &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$data&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
-        &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt;; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;i++&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git_print_stats &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--csv&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;,&apos;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;{ print $3 }&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;n &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;i++&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;done
     &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -284,13 +265,13 @@ $$
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_print_stats&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;OLDIFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$IFS&lt;/span&gt;; &lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' #'&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;committer &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_list_committers&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
-        &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_count_commits &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;nv&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git_count_line_changes &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--csv&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
-            &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{ print $1 }'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | awk &lt;span class=&quot;s1&quot;&gt;'{ print $2 }'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;OLDIFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$IFS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#&apos;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;committer &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git_list_committers&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+        &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git_count_commits &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git_count_line_changes &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--csv&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+            &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;{ print $1 }&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;{ print $2 }&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
             &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,%s,%s,%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cc&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$al&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$dl&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;else
             &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%40s %7s %30s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$cc&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
@@ -303,7 +284,7 @@ $$
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_list_committers&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    git log --all --format&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'%cN'&lt;/span&gt; | sort -u
+    git log &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;%cN&apos;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Return number of commits for a given author.&lt;/p&gt;
@@ -311,13 +292,13 @@ $$
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_count_commits&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     git log &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --author&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --since&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --until&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y/%m/%d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --no-merges &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'%h [%s] &amp;lt;%an&amp;gt;'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --abbrev-commit &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    | wc -l | tr -d &lt;span class=&quot;s1&quot;&gt;'[[:space:]]'&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--author&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--since&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--until&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%Y/%m/%d&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--no-merges&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;%h [%s] &amp;lt;%an&amp;gt;&apos;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--abbrev-commit&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    | &lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;[[:space:]]&apos;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Return number of line changes for a given author.&lt;/p&gt;
@@ -325,28 +306,28 @@ $$
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;git_count_line_changes&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     git log &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --author&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --since&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --until&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date +%Y/%m/%d&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --no-merges &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --pretty&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'%h [%s] &amp;lt;%an&amp;gt;'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --abbrev-commit &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-        --numstat &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    | awk &lt;span class=&quot;s1&quot;&gt;'NF==3 \
+        &lt;span class=&quot;nt&quot;&gt;--author&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--since&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;date_ago &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--until&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%Y/%m/%d&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--no-merges&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;%h [%s] &amp;lt;%an&amp;gt;&apos;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--abbrev-commit&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--numstat&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;NF==3 \
         { plus+=$1; minus+=$2; total+=$1+$2 } END \
-        { printf(&quot;%d +%d:-%d\n&quot;, total, plus, minus) }'&lt;/span&gt;
+        { printf(&quot;%d +%d:-%d\n&quot;, total, plus, minus) }&apos;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Calculate date in the past from now.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;date_ago&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OSTYPE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;darwin&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$OSTYPE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;darwin&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
         &lt;span class=&quot;c&quot;&gt;# 1y, 12m, 52w, 365d, etc.&lt;/span&gt;
-        date -v-&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; +%Y/%m/%d
+        &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; +%Y/%m/%d
     &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
         &lt;span class=&quot;c&quot;&gt;# 1 year, 12 months, 52 weeks, 365 days, etc.&lt;/span&gt;
-        date +%Y/%m/%d -d &lt;span class=&quot;s2&quot;&gt;&quot;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%Y/%m/%d &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -354,10 +335,10 @@ $$
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;source_count_lines&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    find &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; -name &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt; -print0 | xargs -0 cat | wc -l
+    find &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-print0&lt;/span&gt; | xargs &lt;span class=&quot;nt&quot;&gt;-0&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
 </description>
         <pubDate>Sun, 03 Jul 2016 21:18:13 +0100</pubDate>
         <link>http://stefaniuk.co.uk/an-alternative-approach-to-estimates</link>
@@ -368,7 +349,7 @@ $$
     
       <item>
         <title>Hello, World!</title>
-        <description>&lt;p&gt;I decided to blog. This is long overdue. I should have started this years ago. This begs the question why didn&amp;#39;t I? I code at work I code at home. Time is very precious for me... and yes, there are more important things in live than a hobby. But I&amp;#39;m going to try anyway!&lt;/p&gt;
+        <description>&lt;p&gt;I decided to blog. This is long overdue. I should have started this years ago. This begs the question why didn’t I? I code at work I code at home. Time is very precious for me… and yes, there are more important things in live than a hobby. But I’m going to try anyway!&lt;/p&gt;
 
 &lt;p&gt;There is an objective, self-improvement. Continuous learning is part of being a good programmer. The world around us changes quickly. Coping with change is no longer sufficient. We need to embrace it.&lt;/p&gt;
 

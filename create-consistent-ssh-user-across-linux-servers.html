@@ -11,21 +11,23 @@
   <link rel="canonical" href="http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers">
   <link rel="alternate" type="application/rss+xml" title="Dan Stefaniuk" href="http://stefaniuk.co.uk/feed.xml">
 
-  <!-- Begin Jekyll SEO tag v2.2.3 -->
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Create Consistent SSH User Accounts Across Multiple Linux Servers | Dan Stefaniuk</title>
+<meta name="generator" content="Jekyll v4.3.4" />
 <meta property="og:title" content="Create Consistent SSH User Accounts Across Multiple Linux Servers" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Due to a specific design requirements on a project I&#39;ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:" />
-<meta property="og:description" content="Due to a specific design requirements on a project I&#39;ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:" />
+<meta name="description" content="Due to a specific design requirements on a project I’ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:" />
+<meta property="og:description" content="Due to a specific design requirements on a project I’ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:" />
 <link rel="canonical" href="http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers" />
 <meta property="og:url" content="http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers" />
 <meta property="og:site_name" content="Dan Stefaniuk" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-08-22T22:29:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Create Consistent SSH User Accounts Across Multiple Linux Servers" />
 <script type="application/ld+json">
-{"@context":"http://schema.org","@type":"BlogPosting","headline":"Create Consistent SSH User Accounts Across Multiple Linux Servers","datePublished":"2017-08-22T22:29:00+01:00","dateModified":"2017-08-22T22:35:35+01:00","description":"Due to a specific design requirements on a project I&#39;ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers"},"url":"http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-08-22T22:35:35+01:00","datePublished":"2017-08-22T22:29:00+01:00","description":"Due to a specific design requirements on a project I’ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:","headline":"Create Consistent SSH User Accounts Across Multiple Linux Servers","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers"},"url":"http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers"}</script>
 <!-- End Jekyll SEO tag -->
-
 
   
 <script>
@@ -37,9 +39,6 @@
   ga('send', 'pageview');
 </script>
 
-
-
-  
 
   
 
@@ -76,8 +75,6 @@
         
           
         
-          
-        
       </div>
     </nav>
 
@@ -98,63 +95,63 @@
     </p>
   </header>
   <div class="post-content" itemprop="articleBody">
-    <p>Due to a specific design requirements on a project I&#39;ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:</p>
+    <p>Due to a specific design requirements on a project I’ve been working on recently I needed to create a consistent system account on all the Linux servers across all the environments. This account supposed to have the following characteristics:</p>
 
 <ul>
-<li>Same GID and UID</li>
-<li>Both password and public SSH key are set</li>
-<li>Only the SSH key-based authentication is allowed</li>
-<li>Privileged operations are executed without having to provide password (optional)</li>
+  <li>Same GID and UID</li>
+  <li>Both password and public SSH key are set</li>
+  <li>Only the SSH key-based authentication is allowed</li>
+  <li>Privileged operations are executed without having to provide password (optional)</li>
 </ul>
 
 <p>As you can tell this is an admin type account that is usually created just after the installation of an operating system.</p>
 
-<p>Servers are up and running. Setting it up by hand could be an option. However, this would be a very old-fashioned approach though. I already have an automation tool in place. My favorite one is Ansible due to its simple architecture. Whether or not our configuration management framework is really advanced and facilitates tweaking of every aspect of an OS or a VM in my opinion the best language to script it is Bash. The change will be expressed in a most readable way that every sysadmin or platform engineer as they are called these days will understand. I&#39;m going to use Ansible only as an orchestration tool to ship the script across and execute it without any user interaction.</p>
+<p>Servers are up and running. Setting it up by hand could be an option. However, this would be a very old-fashioned approach though. I already have an automation tool in place. My favorite one is Ansible due to its simple architecture. Whether or not our configuration management framework is really advanced and facilitates tweaking of every aspect of an OS or a VM in my opinion the best language to script it is Bash. The change will be expressed in a most readable way that every sysadmin or platform engineer as they are called these days will understand. I’m going to use Ansible only as an orchestration tool to ship the script across and execute it without any user interaction.</p>
 
 <p>Here is our sample input:</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">id</span><span class="o">=</span>1000
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">id</span><span class="o">=</span>1000
 <span class="nv">username</span><span class="o">=</span><span class="s2">"dan"</span>
 <span class="nv">password</span><span class="o">=</span><span class="s2">"s3cr3t"</span>
 <span class="nv">ssh_pk</span><span class="o">=</span><span class="s2">"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGA++RFH4MfQ+697dSNS+p2Hx0a4X56pnDrMIbDozYUPcbY6rictsJvsakaF2yMlR9xW0nEWichdwB5dFxoVQ9E6n6ygRB5Q88j+SOsvVA+wjCJ0+Ittfrb9/dTrnuSWT58p1HKaCDOJdx402P41DZGw4Fq+JKTEvP+H0AbOdUifNMrZBPZ0kOv/0bNT839ytI6rKGi+3w42TN37k7H02TmAFPnip3YpLrUMNxMHulxyzaQ2ueAILGmPac2pz6hU6OflSCkptiV7yDYv/LnjFDSzagFP0dIr5jkT+XenpJOXgdXA/g3/4aOUHfo9tEQngC9ANKbaB3pRwAfGM35V35 my-key"</span></code></pre></figure>
 
-<p>But before we create such a user let&#39;s check if the ID that we intent to use is available. If it is already taken we need to find the current user, terminate all his processes, change the UID and GID, then fix file ownership accordingly.</p>
+<p>But before we create such a user let’s check if the ID that we intent to use is available. If it is already taken we need to find the current user, terminate all his processes, change the UID and GID, then fix file ownership accordingly.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">uname</span><span class="o">=</span><span class="k">$(</span>grep <span class="nv">$id</span> /etc/passwd | cut -f1 -d:<span class="k">)</span>
-<span class="nv">gname</span><span class="o">=</span><span class="k">$(</span>grep <span class="nv">$id</span> /etc/group | cut -f1 -d:<span class="k">)</span>
-ps -o pid -u <span class="nv">$uname</span> | xargs <span class="nb">kill</span> -9
-<span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$uname</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-    </span>usermod -u 1111 <span class="nv">$uname</span>
-    find / -user <span class="nv">$id</span> -exec chown -h 1111 <span class="o">{}</span> <span class="se">\;</span>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">uname</span><span class="o">=</span><span class="si">$(</span><span class="nb">grep</span> <span class="nv">$id</span> /etc/passwd | <span class="nb">cut</span> <span class="nt">-f1</span> <span class="nt">-d</span>:<span class="si">)</span>
+<span class="nv">gname</span><span class="o">=</span><span class="si">$(</span><span class="nb">grep</span> <span class="nv">$id</span> /etc/group | <span class="nb">cut</span> <span class="nt">-f1</span> <span class="nt">-d</span>:<span class="si">)</span>
+ps <span class="nt">-o</span> pid <span class="nt">-u</span> <span class="nv">$uname</span> | xargs <span class="nb">kill</span> <span class="nt">-9</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$uname</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>usermod <span class="nt">-u</span> 1111 <span class="nv">$uname</span>
+    find / <span class="nt">-user</span> <span class="nv">$id</span> <span class="nt">-exec</span> <span class="nb">chown</span> <span class="nt">-h</span> 1111 <span class="o">{}</span> <span class="se">\;</span>
 <span class="k">fi
-if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$gname</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-    </span>groupmod -g 1111 <span class="nv">$gname</span>
-    find / -group <span class="nv">$id</span> -exec chgrp -h 1111 <span class="o">{}</span> <span class="se">\;</span>
+if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$gname</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>groupmod <span class="nt">-g</span> 1111 <span class="nv">$gname</span>
+    find / <span class="nt">-group</span> <span class="nv">$id</span> <span class="nt">-exec</span> <span class="nb">chgrp</span> <span class="nt">-h</span> 1111 <span class="o">{}</span> <span class="se">\;</span>
 <span class="k">fi</span></code></pre></figure>
 
 <p>Now, we are ready to create a new system user.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">groupadd -g <span class="nv">$id</span> <span class="nv">$username</span>
-useradd -m -s /bin/bash -u <span class="nv">$id</span> -g <span class="nv">$username</span> -G sudo,docker <span class="nv">$username</span>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">groupadd <span class="nt">-g</span> <span class="nv">$id</span> <span class="nv">$username</span>
+useradd <span class="nt">-m</span> <span class="nt">-s</span> /bin/bash <span class="nt">-u</span> <span class="nv">$id</span> <span class="nt">-g</span> <span class="nv">$username</span> <span class="nt">-G</span> <span class="nb">sudo</span>,docker <span class="nv">$username</span>
 <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$username</span><span class="s2">:</span><span class="nv">$password</span><span class="s2">"</span> | chpasswd</code></pre></figure>
 
-<p>SSH key-based authentication provides cryptographic strength that even extremely long passwords cannot offer. So, this will be our preferred method of granting access to a system and ...</p>
+<p>SSH key-based authentication provides cryptographic strength that even extremely long passwords cannot offer. So, this will be our preferred method of granting access to a system and …</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mkdir -p /home/<span class="nv">$username</span>/.ssh
-<span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ssh_pk</span><span class="s2">"</span> &gt;&gt; /home/<span class="nv">$username</span>/.ssh/authorized_keys
-chmod 600 /home/<span class="nv">$username</span>/.ssh/authorized_keys
-chown -R <span class="nv">$username</span>:<span class="nv">$username</span> /home/<span class="nv">$username</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">mkdir</span> <span class="nt">-p</span> /home/<span class="nv">$username</span>/.ssh
+<span class="nb">echo</span> <span class="s2">"</span><span class="nv">$ssh_pk</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /home/<span class="nv">$username</span>/.ssh/authorized_keys
+<span class="nb">chmod </span>600 /home/<span class="nv">$username</span>/.ssh/authorized_keys
+<span class="nb">chown</span> <span class="nt">-R</span> <span class="nv">$username</span>:<span class="nv">$username</span> /home/<span class="nv">$username</span></code></pre></figure>
 
-<p>... we make sure the above is the only method of authentication by changing the OpenSSL daemon configuration.</p>
+<p>… we make sure the above is the only method of authentication by changing the OpenSSL daemon configuration.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">sed -i <span class="s2">"s/^PasswordAuthentication yes/#PasswordAuthentication yes/g"</span> <span class="se">\</span>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s/^PasswordAuthentication yes/#PasswordAuthentication yes/g"</span> <span class="se">\</span>
     /etc/ssh/sshd_config</code></pre></figure>
 
 <p>The last thing we may want to do is to allow privileged operations without password. This may come handy while the same system account is used to perform other automated tasks that normally would prompt for a user password.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$username</span><span class="s2"> ALL=(ALL) NOPASSWD: ALL"</span> &gt; /etc/sudoers.d/<span class="nv">$username</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$username</span><span class="s2"> ALL=(ALL) NOPASSWD: ALL"</span> <span class="o">&gt;</span> /etc/sudoers.d/<span class="nv">$username</span></code></pre></figure>
 
-<p>There we have it. A simple way to test it could be by loading the private key locally using the <code>ssh-add</code> command and trying to <code>ssh</code> into the server.</p>
+<p>There we have it. A simple way to test it could be by loading the private key locally using the <code class="language-plaintext highlighter-rouge">ssh-add</code> command and trying to <code class="language-plaintext highlighter-rouge">ssh</code> into the server.</p>
 
 <p>In my next blog post I will show how to create a minimal Ansible orchestration script.</p>
 
@@ -186,8 +183,7 @@ chown -R <span class="nv">$username</span>:<span class="nv">$username</span> /ho
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>Dan Stefaniuk</li>
-          <li><a href="mailto:daniel.stefaniuk@gmail.com">daniel.stefaniuk@gmail.com</a></li>
+          <li><a href="mailto:daniel.stefaniuk@gmail.com">Dan Stefaniuk</a></li>
         </ul>
       </div>
 
@@ -225,7 +221,7 @@ chown -R <span class="nv">$username</span>:<span class="nv">$username</span> /ho
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>A blog about software development.
+        <p>A blog about software engineering
 </p>
       </div>
     </div>
