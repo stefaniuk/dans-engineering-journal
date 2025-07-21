@@ -2,7 +2,6 @@
 layout: post
 title: "A Revised Way of Generating SSH Keys"
 date: 2017-09-02 22:16:00 Europe/London
-code-terminal: true
 comments: true
 ---
 I've been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They've been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the [__elliptic curve cryptography__](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) has become much more popular in the recent decade.
@@ -22,7 +21,7 @@ The `-t ed25519` parameter is used to generate two asymmetrical keys based on th
 Time to see the result of the above command. Here is an example of my revised way of generating SSH keys along with content of the files.
 
 &nbsp;
-{% terminal %}
+```shell
 $ ssh-keygen -t ed25519 -a 100 -C "my-key-comment" -f my-key-name
 Generating public/private ed25519 key pair.
 Enter passphrase (empty for no passphrase):
@@ -70,4 +69,4 @@ ikyV
 Private-Lines: 1
 63bsFlto1i20tXwFu3xveXsGtDD7hEmsM0FrIGqviHn4O2xXG9Pwjmhmwf+z8rJe
 Private-MAC: 72102d9a0f158f653577df276fcf329b482df329
-{% endterminal %}
+```

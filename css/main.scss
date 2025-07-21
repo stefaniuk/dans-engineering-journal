@@ -51,3 +51,11 @@ $on-laptop:        800px;
         "layout",
         "syntax-highlighting"
 ;
+
+.highlight.shell, .highlight.language-shell {
+  background: #222;
+  color: #eee;
+  border-radius: 5px;
+  padding: 1em;
+  font-family: "Fira Mono", "Consolas", "Menlo", monospace;
+}

@@ -3,7 +3,7 @@ permalink: /:title
 
 title: Dan Stefaniuk
 description: >
-  A blog about software development.
+  A blog about software engineering
 
 email: daniel.stefaniuk@gmail.com
 github_username: stefaniuk
@@ -12,13 +12,13 @@ stackoverflow_username: 472150
 twitter_username: danstefaniuk
 
 timezone: Europe/London
-markdown: redcarpet
+markdown: kramdown
 
 gems:
+  - jekyll-feed
   - jekyll-last-modified-at
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-terminal
 
 sass:
   style: :compressed

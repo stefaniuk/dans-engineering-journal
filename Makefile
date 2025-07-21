@@ -1,7 +1,7 @@
 blog:
-	JEKYLL_ENV=development jekyll server --drafts
+	JEKYLL_ENV=development bundle exec jekyll server --drafts
 test:
-	JEKYLL_ENV=production jekyll server
+	JEKYLL_ENV=production bundle exec jekyll server
 publish: save
 	cd _site \
 		&& git push
@@ -12,10 +12,10 @@ save: update
 		&& git commit -m "Publish"
 update: clean
 	cd _site \
-		&& git clone git@github.com:stefaniuk/stefaniuk.github.io.git . \
+		&& git clone https://github.com/stefaniuk-blog/stefaniuk.co.uk.git . \
 		&& git checkout master \
 		&& cd .. \
-		&& JEKYLL_ENV=production jekyll build
+		&& JEKYLL_ENV=production bundle exec jekyll build
 clean:
 	rm -rf .sass-cache
 	rm -rf _site

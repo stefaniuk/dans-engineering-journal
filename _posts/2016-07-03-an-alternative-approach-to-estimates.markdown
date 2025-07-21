@@ -3,7 +3,6 @@ layout: post
 title: "An Alternative Approach to Estimates"
 date: 2016-07-03 21:18:13 BST
 code-math: true
-code-terminal: true
 comments: true
 ---
 
@@ -63,7 +62,8 @@ After considering a manual approach of producing my estimates for each module an
 Here is the usage example followed by some of the Bash functions to help to extract relevant information from Git. I used an open source project to produce the output.
 
 &nbsp;
-{% terminal %}
+
+```shell
 $ git_print_stats 1y # for Linux use "1 year"
 Developer  1       1                     46 +23:-23
 Developer  2       1                     79 +44:-35
@@ -89,7 +89,7 @@ $ git_calc_avg_changes_per_dev 1y
 78
 $ source_count_lines ./module/A *.ext
 3595
-{% endterminal %}
+```
 
 &nbsp;&nbsp;
 
