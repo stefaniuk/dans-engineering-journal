@@ -13,7 +13,7 @@ save: update
 update: clean
 	cd _site \
 		&& git clone https://github.com/stefaniuk-blog/stefaniuk.co.uk.git . \
-		&& git checkout master \
+		&& git checkout main \
 		&& cd .. \
 		&& JEKYLL_ENV=production bundle exec jekyll build
 clean:
