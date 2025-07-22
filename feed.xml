@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dan Stefaniuk</title>
+    <title>Dan&apos;s Blog</title>
     <description>A blog about software engineering
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Jul 2025 06:58:19 +0100</pubDate>
-    <lastBuildDate>Tue, 22 Jul 2025 06:58:19 +0100</lastBuildDate>
+    <pubDate>Tue, 22 Jul 2025 07:23:12 +0100</pubDate>
+    <lastBuildDate>Tue, 22 Jul 2025 07:23:12 +0100</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
