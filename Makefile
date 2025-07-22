@@ -11,7 +11,7 @@ clean:
 
 update: clean
 	cd _site \
-		&& git clone https://github.com/stefaniuk-blog/stefaniuk.co.uk.git . \
+		&& git clone https://github.com/stefaniuk-pages/stefaniuk.co.uk.git . \
 		&& git checkout gh-pages \
 		&& cd .. \
 		&& JEKYLL_ENV=production bundle exec jekyll build
