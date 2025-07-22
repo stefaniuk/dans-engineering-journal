@@ -5,6 +5,7 @@ title: Dan's Blog
 description: >
   A blog about software engineering
 
+author: Dan Stefaniuk
 email: daniel.stefaniuk@gmail.com
 github_username: stefaniuk
 linkedin_username: dstefaniuk
@@ -21,7 +22,7 @@ gems:
   - jekyll-sitemap
 
 sass:
-  style: :compressed
+  style: compressed
 
 exclude:
   - LICENCE.md

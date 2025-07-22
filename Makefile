@@ -5,12 +5,13 @@ serve-live:
 	JEKYLL_ENV=production bundle exec jekyll server
 
 clean:
-	rm -rf .sass-cache
-	rm -rf _site
-	mkdir _site
+	rm -rf \
+		_site \
+		.jekyll-cache \
+		.sass-cache
 
 update: clean
-	cd _site \
+	mkdir _site && cd _site \
 		&& git clone https://github.com/stefaniuk-pages/stefaniuk.co.uk.git . \
 		&& git checkout gh-pages \
 		&& cd .. \
