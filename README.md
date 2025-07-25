@@ -1,8 +1,8 @@
-# stefaniuk.co.uk
+# Dan's Engineering Journal
 
 Welcome to the repository for [stefaniuk.co.uk](stefaniuk.co.uk) - my professional technology blog, serving as both a public knowledge base and a live record of my ongoing journey through software engineering, cloud architecture, and technical leadership. This site is where I openly share discoveries, deep technical dives, hands-on tutorials, and candid reflections on both success and setbacks.
 
-- [stefaniuk.co.uk](#stefaniukcouk)
+- [Dan's Engineering Journal](#dans-engineering-journal)
   - [Purpose \& Philosophy 🎯](#purpose--philosophy-)
   - [Technology Stack ⚙️](#technology-stack-️)
   - [Structure 🗂️](#structure-️)
