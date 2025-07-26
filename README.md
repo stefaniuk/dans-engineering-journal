@@ -1,22 +1,21 @@
-# Dan's Engineering Journal
+# 🧭 Dan's Engineering Journal
 
 Welcome to the repository for [stefaniuk.co.uk](stefaniuk.co.uk) - my professional technology blog, serving as both a public knowledge base and a live record of my ongoing journey through software engineering, cloud architecture, and technical leadership. This site is where I openly share discoveries, deep technical dives, hands-on tutorials, and candid reflections on both success and setbacks.
 
-- [Dan's Engineering Journal](#dans-engineering-journal)
-  - [Purpose \& Philosophy 🎯](#purpose--philosophy-)
-  - [Technology Stack ⚙️](#technology-stack-️)
-  - [Structure 🗂️](#structure-️)
-  - [Key Features 🌟](#key-features-)
-  - [Local Development \& Contribution 🧑‍💻](#local-development--contribution-)
-    - [Prerequisites 📦](#prerequisites-)
-    - [Installing Jekyll on macOS 🍏](#installing-jekyll-on-macos-)
-    - [Running the site locally 🖥️](#running-the-site-locally-️)
-    - [Building Static Files 🏗️](#building-static-files-️)
-    - [Using Make Commands 🛠️](#using-make-commands-️)
-  - [License 📄](#license-)
+- [🧭 Dan's Engineering Journal](#-dans-engineering-journal)
+  - [🎯 Purpose \& Philosophy](#-purpose--philosophy)
+  - [⚙️ Technology Stack](#️-technology-stack)
+  - [🗂️ Structure](#️-structure)
+  - [🌟 Key Features](#-key-features)
+  - [🧑‍💻 Local Development \& Contribution](#-local-development--contribution)
+    - [📦 Prerequisites](#-prerequisites)
+    - [🍏 Installing Jekyll on macOS](#-installing-jekyll-on-macos)
+    - [🖥️ Running the site locally](#️-running-the-site-locally)
+    - [🏗️ Building Static Files](#️-building-static-files)
+    - [🛠️ Using Make Commands](#️-using-make-commands)
+  - [📄 License](#-license)
 
-
-## Purpose & Philosophy 🎯
+## 🎯 Purpose & Philosophy
 
 This blog is designed not just as a personal archive, but as a practical resource for fellow engineers, architects, and technology enthusiasts. My intention is to foster a culture of learning, knowledge sharing, and open dialogue across the professional community.
 
@@ -37,7 +36,7 @@ Each article and update represents my commitment to:
 
 Whether you are an experienced technologist or early in your career, you’ll find authentic insights and actionable knowledge to support your own professional development.
 
-## Technology Stack ⚙️
+## ⚙️ Technology Stack
 
 This site is powered by modern, open-source tools to ensure portability, extensibility, and ease of contribution:
 
@@ -47,7 +46,7 @@ This site is powered by modern, open-source tools to ensure portability, extensi
 - 💬 Disqus – interactive comments and discussion
 - 📰 RSS Feed – content syndication for readers and aggregators
 
-## Structure 🗂️
+## 🗂️ Structure
 
 ```text
 .
@@ -69,7 +68,7 @@ This site is powered by modern, open-source tools to ensure portability, extensi
 └── sitemap.xml      # SEO and discoverability
 ```
 
-## Key Features 🌟
+## 🌟 Key Features
 
 - 📱 Mobile-first, responsive design for a seamless reading experience on any device
 - 💬 Interactive commenting via Disqus for community engagement
@@ -78,17 +77,17 @@ This site is powered by modern, open-source tools to ensure portability, extensi
 - 📢 Integrated social media sharing
 - 📈 Real visitor analytics (privacy-respecting)
 
-## Local Development & Contribution 🧑‍💻
+## 🧑‍💻 Local Development & Contribution
 
 You are encouraged to reuse, adapt, or contribute to this blog’s content and technical setup. All scripts and configuration are provided for easy local development and automation.
 
-### Prerequisites 📦
+### 📦 Prerequisites
 
 - 💎 Ruby (2.7.0 or newer)
 - 📦 RubyGems (comes with Ruby)
 - 🛠️ make (standard on macOS/Linux)
 
-### Installing Jekyll on macOS 🍏
+### 🍏 Installing Jekyll on macOS
 
 1. Install Bundler and Jekyll
 
@@ -102,7 +101,7 @@ You are encouraged to reuse, adapt, or contribute to this blog’s content and t
     bundle install
     ```
 
-### Running the site locally 🖥️
+### 🖥️ Running the site locally
 
 1. Start the Jekyll server:
 
@@ -112,7 +111,7 @@ You are encouraged to reuse, adapt, or contribute to this blog’s content and t
 
 2. Open your web browser and navigate to `http://localhost:4000`
 
-### Building Static Files 🏗️
+### 🏗️ Building Static Files
 
 1. To generate the static files for production:
 
@@ -128,7 +127,7 @@ You are encouraged to reuse, adapt, or contribute to this blog’s content and t
     JEKYLL_ENV=development bundle exec jekyll build --drafts
     ```
 
-### Using Make Commands 🛠️
+### 🛠️ Using Make Commands
 
 The project includes several helpful make commands:
 
@@ -138,7 +137,7 @@ The project includes several helpful make commands:
 - `make update` - Clean and rebuild the site
 - `make publish` - Build and publish to GitHub Pages
 
-## License 📄
+## 📄 License
 
 This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/). For full license terms, please see [LICENCE.md](LICENCE.md).
 
