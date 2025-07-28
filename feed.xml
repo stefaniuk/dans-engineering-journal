@@ -6,9 +6,86 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 25 Jul 2025 08:25:07 +0100</pubDate>
-    <lastBuildDate>Fri, 25 Jul 2025 08:25:07 +0100</lastBuildDate>
+    <pubDate>Mon, 28 Jul 2025 07:31:35 +0100</pubDate>
+    <lastBuildDate>Mon, 28 Jul 2025 07:31:35 +0100</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Why I&apos;m Betting on uv: The Python Package Manager I Wish Existed Years Ago</title>
+        <description>&lt;p&gt;I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time.&lt;/p&gt;
+
+&lt;p&gt;As I learned Python, I noticed things weren’t as smooth. Python is flexible, but managing environments and dependencies always felt a bit messy compared to Java and Maven. I found myself wishing for something more organised and dependable for Python projects.&lt;/p&gt;
+
+&lt;p&gt;That’s why &lt;a href=&quot;https://github.com/astral-sh/uv&quot;&gt;uv&lt;/a&gt; caught my eye (it’s not completely new - it’s been around for a while - but it’s starting to mature). It’s a single, modern, and very fast tool that brings everything you need for Python project management into one place. Here’s a quick summary of why I think uv is worth considering for your next project.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-uv-and-why-should-you-care&quot;&gt;What is uv and why should you care?&lt;/h3&gt;
+
+&lt;p&gt;uv is designed to replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip-tools&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; with one tool. If you’ve ever felt Python package management was awkward compared to tools like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn&lt;/code&gt;, uv is here to fix that.&lt;/p&gt;
+
+&lt;p&gt;You can install it on macOS with:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;uv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;or use other install methods if you prefer.&lt;/p&gt;
+
+&lt;p&gt;If you’re used to working with Node.js, uv will feel very familiar - think of it as npm or yarn for Python.&lt;/p&gt;
+
+&lt;h3 id=&quot;quick-start-and-how-i-got-going&quot;&gt;Quick start and how I got going&lt;/h3&gt;
+
+&lt;p&gt;What I really like about uv is that most things are simple and just work. Here are a few things I tried:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Download and manage multiple Python versions&lt;/span&gt;
+uv python &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;3.10 3.11 3.12 3.13
+
+&lt;span class=&quot;c&quot;&gt;# See where those versions are installed&lt;/span&gt;
+uv python &lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Create a virtual environment in your project&lt;/span&gt;
+uv venv .venv
+
+&lt;span class=&quot;c&quot;&gt;# Run Python commands in the venv using uv (no need to manually activate)&lt;/span&gt;
+uv run python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Set up a new project quickly&lt;/span&gt;
+uv init &lt;span class=&quot;nt&quot;&gt;--app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; my-app &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;--python&lt;/span&gt; 3.12 &lt;span class=&quot;nt&quot;&gt;--managed-python&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;--no-readme&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--vcs&lt;/span&gt; none
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;uv keeps things tidy. You can use different Python versions in different projects, and switching between them is easy.&lt;/p&gt;
+
+&lt;h3 id=&quot;my-observations&quot;&gt;My observations&lt;/h3&gt;
+
+&lt;h4 id=&quot;what-i-liked&quot;&gt;What I liked&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Speed&lt;/strong&gt; - installing packages and setting up environments is much faster than with pip and virtualenv.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Unified workflow&lt;/strong&gt; - one tool for everything, no more switching between different commands or tools.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Modern standards&lt;/strong&gt; - uv supports &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; by default, making projects more maintainable.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Python version management&lt;/strong&gt; - easily download and use multiple Python versions, similar to pyenv but more seamless.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;whats-missing-or-could-be-improved&quot;&gt;What’s missing or could be improved&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;There isn’t a single command to update all dependencies to the latest versions (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn upgrade&lt;/code&gt;). For now, you need to update version numbers yourself.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;should-you-switch-to-uv&quot;&gt;Should you switch to uv?&lt;/h4&gt;
+
+&lt;p&gt;If you want fast, simple, and modern Python project management in one tool, uv is a great choice. It’s built with lessons learned from other languages and feels like where Python tooling is heading. It is also supported by a vibrant community with &lt;a href=&quot;https://github.com/astral-sh/uv/graphs/contributors&quot;&gt;many contributors and maintainers&lt;/a&gt; - usually a good indication of a trend.&lt;/p&gt;
+
+&lt;p&gt;If you rely on more advanced features from tools like Poetry, or your workflow is very complex, you might want to keep an eye on uv’s progress. But honestly, seeing how good and future-proof uv already is, I’m making the switch for my projects now.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 28 Jul 2025 07:22:00 +0100</pubDate>
+        <link>http://stefaniuk.co.uk/why-im-betting-on-uv</link>
+        <guid isPermaLink="true">http://stefaniuk.co.uk/why-im-betting-on-uv</guid>
+        
+        
+      </item>
     
       <item>
         <title>A Revised Way of Generating SSH Keys</title>
@@ -269,7 +346,7 @@ Developer 20       3                       16 +8:-8
     &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;committer &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git_list_committers&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
         &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git_count_commits &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;nv&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git_count_line_changes &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--csv&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; _&lt;span class=&quot;s2&quot;&gt;&quot;--csv&quot;&lt;/span&gt;_ &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
             &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;{ print $1 }&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
             &lt;span class=&quot;nv&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cl&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;{ print $2 }&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
             &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,%s,%s,%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$committer&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cc&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$al&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$dl&lt;/span&gt;

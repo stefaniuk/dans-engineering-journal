@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="An Alternative Approach to Estimates" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-07-21T23:14:54+01:00","datePublished":"2016-07-03T21:18:13+01:00","description":"Problem","headline":"An Alternative Approach to Estimates","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/an-alternative-approach-to-estimates"},"url":"http://stefaniuk.co.uk/an-alternative-approach-to-estimates"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-07-28T07:30:04+01:00","datePublished":"2016-07-03T21:18:13+01:00","description":"Problem","headline":"An Alternative Approach to Estimates","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/an-alternative-approach-to-estimates"},"url":"http://stefaniuk.co.uk/an-alternative-approach-to-estimates"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -97,8 +97,8 @@
       
       
       
-        <time datetime="2025-07-21T23:14:54+01:00" itemprop="dateModified">
-          <!--&nbsp;&nbsp;&nbsp;( Updated on 21 July 2025 )-->
+        <time datetime="2025-07-28T07:30:04+01:00" itemprop="dateModified">
+          <!--&nbsp;&nbsp;&nbsp;( Updated on 28 July 2025 )-->
         </time>
       
     </p>
@@ -216,7 +216,7 @@ Developer 20       3                       16 +8:-8
     <span class="k">for </span>committer <span class="k">in</span> <span class="si">$(</span>git_list_committers<span class="si">)</span><span class="p">;</span> <span class="k">do
         </span><span class="nv">cc</span><span class="o">=</span><span class="si">$(</span>git_count_commits <span class="s2">"</span><span class="nv">$committer</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="si">)</span>
         <span class="nv">cl</span><span class="o">=</span><span class="si">$(</span>git_count_line_changes <span class="s2">"</span><span class="nv">$committer</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="si">)</span>
-        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$*</span> <span class="o">==</span> <span class="k">*</span><span class="s2">"--csv"</span><span class="k">*</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$*</span> <span class="o">==</span> _<span class="s2">"--csv"</span>_ <span class="o">]]</span><span class="p">;</span> <span class="k">then
             </span><span class="nv">al</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$cl</span><span class="s2">"</span> | <span class="nb">awk</span> <span class="s1">'{ print $1 }'</span><span class="si">)</span>
             <span class="nv">dl</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$cl</span><span class="s2">"</span> | <span class="nb">awk</span> <span class="s1">'{ print $2 }'</span><span class="si">)</span>
             <span class="nb">printf</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">%s</span><span class="se">\"</span><span class="s2">,%s,%s,%s</span><span class="se">\n</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$committer</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$cc</span><span class="s2">"</span> <span class="nv">$al</span> <span class="nv">$dl</span>
