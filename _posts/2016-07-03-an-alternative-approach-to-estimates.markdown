@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "An Alternative Approach to Estimates"
-date: 2016-07-03 21:18:13 BST
+date: 2016-07-03 21:18:13 Europe/London
 code-math: true
 comments: true
 ---
@@ -12,25 +12,25 @@ A while ago I was asked to plan one of the last phases of development on a proje
 
 Objectives
 
- - Functionality of the application must remain unchanged for the end user
+- Functionality of the application must remain unchanged for the end user
 
 Facts
 
- - It is a simple MVC application built upon a reach domain model
- - Books like _[Design Patterns](https://www.amazon.co.uk/Design-patterns-elements-reusable-object-oriented/dp/0201633612)_ and _[Clean Code](https://www.amazon.co.uk/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)_ were probably not that popular at the time of writing the software
+- It is a simple MVC application built upon a reach domain model
+- Books like _[Design Patterns](https://www.amazon.co.uk/Design-patterns-elements-reusable-object-oriented/dp/0201633612)_ and _[Clean Code](https://www.amazon.co.uk/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)_ were probably not that popular at the time of writing the software
 
 Issues
 
- - Developers' skills in our team differ much
- - Complexity of the code that needs to be refactored varies from module to module
- - We have never done that before
+- Developers' skills in our team differ much
+- Complexity of the code that needs to be refactored varies from module to module
+- We have never done that before
 
 Assumptions
 
- - We know the product already
- - Most of the code logic and flow remain the same
- - It should take no longer to refactor the code than implementing that functionality from scratch
- - A lot of work is repetitive and follows a pattern
+- We know the product already
+- Most of the code logic and flow remain the same
+- It should take no longer to refactor the code than implementing that functionality from scratch
+- A lot of work is repetitive and follows a pattern
 
 How to take the above factors into account and produce accurate estimates for the management?
 
@@ -114,7 +114,7 @@ function git_print_stats()
     for committer in $(git_list_committers); do
         cc=$(git_count_commits "$committer" "$1")
         cl=$(git_count_line_changes "$committer" "$1")
-        if [[ $* == *"--csv"* ]]; then
+        if [[ $* == _"--csv"_ ]]; then
             al=$(echo "$cl" | awk '{ print $1 }')
             dl=$(echo "$cl" | awk '{ print $2 }')
             printf "\"%s\",%s,%s,%s\n" "$committer" "$cc" $al $dl
