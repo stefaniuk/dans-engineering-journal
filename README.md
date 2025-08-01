@@ -5,7 +5,7 @@ Welcome to the repository for [stefaniuk.co.uk](stefaniuk.co.uk) - my profession
 - [🧭 Dan's Engineering Journal](#-dans-engineering-journal)
   - [🎯 Purpose \& Philosophy](#-purpose--philosophy)
   - [⚙️ Technology Stack](#️-technology-stack)
-  - [🗂️ Structure](#️-structure)
+  - [🗂️ Directory Structure](#️-directory-structure)
   - [🌟 Key Features](#-key-features)
   - [🧑‍💻 Local Development \& Contribution](#-local-development--contribution)
     - [📦 Prerequisites](#-prerequisites)
@@ -46,7 +46,7 @@ This site is powered by modern, open-source tools to ensure portability, extensi
 - 💬 Disqus – interactive comments and discussion
 - 📰 RSS Feed – content syndication for readers and aggregators
 
-## 🗂️ Structure
+## 🗂️ Directory Structure
 
 ```text
 .
