@@ -137,6 +137,31 @@ The project includes several helpful make commands:
 - `make update` - Clean and rebuild the site
 - `make publish` - Build and publish to GitHub Pages
 
+### 🔄 Indicating Post Updates
+
+If you revise a published post and want to show readers (and search engines) that it has been updated without changing the original publication date, add BOTH a `last_modified_at` field and set `display_last_modified: true` in the post front matter:
+
+```yaml
+---
+layout: post
+title: "Some Post"
+date: 2024-05-12 08:00:00 Europe/London
+last_modified_at: 2025-09-19 09:00:00 Europe/London
+display_last_modified: true
+---
+```
+
+Behaviour:
+
+- The "Last updated" section renders only if `display_last_modified: true` AND `last_modified_at` is later than the original `date`.
+- Omitting either the flag or the timestamp means only the original published date is shown.
+- Uses the `jekyll-last-modified-at` plugin; outputs semantic `<time>` elements with `itemprop="datePublished"` and `itemprop="dateModified"` for improved SEO / structured data.
+
+Best practice:
+
+- Update the field only for substantive changes (new sections, significant clarifications, updated code / versions) – ignore minor typo fixes.
+- Consider keeping a short "Changelog" or "Revision notes" section for heavily revised technical articles.
+
 ## 📄 License
 
 This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/). For full license terms, please see [LICENCE.md](LICENCE.md).
