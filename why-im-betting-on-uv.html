@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-07-28T07:30:04+01:00","datePublished":"2025-07-28T07:22:00+01:00","description":"I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time.","headline":"Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/why-im-betting-on-uv"},"url":"http://stefaniuk.co.uk/why-im-betting-on-uv"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-09-19T13:19:00+01:00","datePublished":"2025-07-28T07:22:00+01:00","description":"I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time.","headline":"Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/why-im-betting-on-uv"},"url":"http://stefaniuk.co.uk/why-im-betting-on-uv"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -92,6 +92,14 @@
       <span class="published-label">Published:</span>
       <time datetime="2025-07-28T07:22:00+01:00" itemprop="datePublished" class="published-date">28 July 2025</time>
       
+        
+        
+        
+          <span class="updated-separator">&nbsp;•&nbsp;</span>
+          <span class="updated-label">Last updated:</span>
+          <time datetime="2025-09-19T13:19:00+01:00" itemprop="dateModified" class="updated-date">19 September 2025</time>
+        
+      
     </p>
   </header>
   <div class="post-content" itemprop="articleBody">
@@ -132,8 +140,8 @@ uv run python <span class="nt">--version</span>
 
 <span class="c"># Set up a new project quickly</span>
 uv init <span class="nt">--app</span> <span class="nt">--name</span> my-app <span class="se">\</span>
- <span class="nt">--python</span> 3.12 <span class="nt">--managed-python</span> <span class="se">\</span>
- <span class="nt">--no-readme</span> <span class="nt">--vcs</span> none
+  <span class="nt">--python</span> 3.13 <span class="nt">--managed-python</span> <span class="se">\</span>
+  <span class="nt">--no-readme</span> <span class="nt">--vcs</span> none
 </code></pre></div></div>
 
 <p>uv keeps things tidy. You can use different Python versions in different projects, and switching between them is easy.</p>
@@ -143,9 +151,7 @@ uv init <span class="nt">--app</span> <span class="nt">--name</span> my-app <spa
 <h4 id="what-i-liked">What I liked</h4>
 
 <ul>
-  <li>
-    <p><strong>Speed</strong> - installing packages and setting up environments is much faster than with pip and virtualenv.</p>
-  </li>
+  <li><strong>Speed</strong> - installing packages and setting up environments is much faster than with pip and virtualenv.</li>
   <li><strong>Unified workflow</strong> - one tool for everything, no more switching between different commands or tools.</li>
   <li><strong>Modern standards</strong> - uv supports <code class="language-plaintext highlighter-rouge">pyproject.toml</code> by default, making projects more maintainable.</li>
   <li><strong>Python version management</strong> - easily download and use multiple Python versions, similar to pyenv but more seamless.</li>
@@ -162,6 +168,49 @@ uv init <span class="nt">--app</span> <span class="nt">--name</span> my-app <spa
 <p>If you want fast, simple, and modern Python project management in one tool, uv is a great choice. It’s built with lessons learned from other languages and feels like where Python tooling is heading. It is also supported by a vibrant community with <a href="https://github.com/astral-sh/uv/graphs/contributors">many contributors and maintainers</a> - usually a good indication of a trend.</p>
 
 <p>If you rely on more advanced features from tools like Poetry, or your workflow is very complex, you might want to keep an eye on uv’s progress. But honestly, seeing how good and future-proof uv already is, I’m making the switch for my projects now.</p>
+
+<h3 id="my-everyday-usage-flow">My everyday usage flow</h3>
+
+<p>Since writing this post, I’ve been using uv daily and found myself running a repeatable flow that keeps my projects clean and reproducible. I’m including it here as a note from my own learning experience, something I tend to run a lot:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start fresh — remove old environment and lock files</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> .venv uv.lock requirements.txt requirements-dev.txt
+
+<span class="c"># Sync dependencies based on pyproject.toml (creates a new .venv and uv.lock)</span>
+uv <span class="nb">sync</span>
+
+<span class="c"># Inspect the full dependency tree</span>
+uv tree
+
+<span class="c"># Ensure that all files `pyproject.toml`, `requirements.txt` and `requirements-dev.txt` contain the same dependencies</span>
+uv pip compile pyproject.toml <span class="nt">--output-file</span> requirements.txt
+uv pip compile pyproject.toml <span class="nt">--extra</span> dev <span class="nt">--output-file</span> requirements-dev.txt
+
+<span class="c"># Confirm it runs in terminal</span>
+uv run python ./path/to/your/script.py
+
+<span class="c"># Run tests (including dev dependencies)</span>
+uv <span class="nb">sync</span> <span class="nt">--extra</span> dev
+uv run python ./path/to/your/test_script.py
+
+<span class="c"># In Visual Studio Code go to:</span>
+<span class="c"># Command Palette (⇧⌘P) → "Python: Select Interpreter"</span>
+<span class="c"># and choose `./.venv/bin/python` located in your project</span>
+</code></pre></div></div>
+
+<p>And here’s a minimal <code class="language-plaintext highlighter-rouge">pyproject.toml</code> file I’ve been using to structure dependencies between runtime and development:</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[project]</span>
+<span class="py">name</span> <span class="p">=</span> <span class="s">"my-app"</span>
+<span class="py">version</span> <span class="p">=</span> <span class="s">"0.1.0"</span>
+<span class="py">description</span> <span class="p">=</span> <span class="s">"Add your description here"</span>
+<span class="py">requires-python</span> <span class="p">=</span> <span class="py">"&gt;</span><span class="p">=</span><span class="mf">3.13</span><span class="s">"</span><span class="err">
+</span><span class="py">dependencies</span> <span class="p">=</span> <span class="py">["loguru&gt;</span><span class="p">=</span><span class="mf">0.7</span><span class="err">.</span><span class="mi">3</span><span class="s">"]</span><span class="err">
+</span><span class="p">[</span><span class="err">project.optional-dependencies</span><span class="p">]</span>
+<span class="py">dev</span> <span class="p">=</span> <span class="py">["pytest&gt;</span><span class="p">=</span><span class="mf">8.4</span><span class="err">.</span><span class="mi">2</span><span class="s">"]</span><span class="err">
+</span></code></pre></div></div>
+
+<p>This combination, a clean <code class="language-plaintext highlighter-rouge">pyproject.toml</code> and a consistent flow with <code class="language-plaintext highlighter-rouge">uv sync</code> and <code class="language-plaintext highlighter-rouge">uv pip compile</code>, has made my daily development much smoother. I no longer worry about environments drifting out of sync or missing dependencies across dev and prod.</p>
 
   </div>
 </article>
