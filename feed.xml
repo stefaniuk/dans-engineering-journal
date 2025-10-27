@@ -6,8 +6,8 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 27 Oct 2025 20:14:15 +0000</pubDate>
-    <lastBuildDate>Mon, 27 Oct 2025 20:14:15 +0000</lastBuildDate>
+    <pubDate>Mon, 27 Oct 2025 20:51:24 +0000</pubDate>
+    <lastBuildDate>Mon, 27 Oct 2025 20:51:24 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -271,6 +271,14 @@ uv init api
         <pubDate>Mon, 28 Jul 2025 07:22:00 +0100</pubDate>
         <link>http://stefaniuk.co.uk/why-im-betting-on-uv</link>
         <guid isPermaLink="true">http://stefaniuk.co.uk/why-im-betting-on-uv</guid>
+        
+        <category>uv</category>
+        
+        <category>python</category>
+        
+        <category>tools</category>
+        
+        <category>learning</category>
         
         
       </item>
