@@ -5,24 +5,26 @@ date: 2017-09-02 22:16:00 Europe/London
 tags: [ssh, security, cryptography, ed25519, linux, devops]
 comments: true
 ---
-I've been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They've been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the [__elliptic curve cryptography__](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) has become much more popular in the recent decade.
 
-_"The primary benefit promised by elliptic curve cryptography is a smaller key size, reducing storage and transmission requirements, i.e. that an elliptic curve group could provide the same level of security afforded by an RSA-based system with a large modulus and correspondingly larger key: for example, a 256-bit elliptic curve public key should provide comparable security to a 3072-bit RSA public key."_
+I've been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They've been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the [**elliptic curve cryptography**](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) has become much more popular in the recent decade.
 
-My take on it is that if this new signature algorithm can give us similar or even __better level of security__ (yes, its implementation is more secure than RSA) with a __comparable flexibility__ using __less resources__, it is definitely time to adopt it. For anyone who is interested in a detailed explanation how exactly it works a lot of papers have been published providing mathematical rationale behind it.
+> "The primary benefit promised by elliptic curve cryptography is a smaller key size, reducing storage and transmission requirements, i.e. that an elliptic curve group could provide the same level of security afforded by an RSA-based system with a large modulus and correspondingly larger key: for example, a 256-bit elliptic curve public key should provide comparable security to a 3072-bit RSA public key."
 
-[__Ed25519__](https://ed25519.cr.yp.to/) is a digital signature scheme based on Twisted Edwards curves. Its has been [added to the OpenSSH codebase](https://github.com/openssh/openssh-portable/commit/5be9d9e3cbd9c66f24745d25bf2e809c1d158ee0#diff-e71776f50c4432cb9cd999367424de20) on the 7th of December 2013. Since then no issue was reported against it.
+My take on it is that if this new signature algorithm can give us similar or even **better level of security** (yes, its implementation is more secure than RSA) with a **comparable flexibility** using **less resources**, it is definitely time to adopt it. For anyone who is interested in a detailed explanation how exactly it works a lot of papers have been published providing mathematical rationale behind it.
+
+[**Ed25519**](https://ed25519.cr.yp.to/) is a digital signature scheme based on Twisted Edwards curves. Its has been [added to the OpenSSH codebase](https://github.com/openssh/openssh-portable/commit/5be9d9e3cbd9c66f24745d25bf2e809c1d158ee0#diff-e71776f50c4432cb9cd999367424de20) on the 7th of December 2013. Since then no issue was reported against it.
 
 The easies way to generate such an SSH key is by using the `ssh-keygen` command of the OpenSSH package:
 
-    ssh-keygen -t ed25519 -o -a 100
+```bash
+ssh-keygen -t ed25519 -o -a 100
+```
 
 The `-t ed25519` parameter is used to generate two asymmetrical keys based on the elliptic curve cryptography. The output is produced in the new [RFC4716](https://tools.ietf.org/html/rfc4716) format rather than the well known PEM and the flag `-o` to support it is implied by default so it can be omitted. It enforces use of a modern key derivation function (KDF) powered by combination of [PBKDF2 and bcrypt](https://github.com/openssh/openssh-portable/blob/f104da263de995f66b6861b4f3368264ee483d7f/openbsd-compat/bcrypt_pbkdf.c). In practice this means that our keypair is more resistant to brute-force password cracking. This is especially true when combined with the `-a <rounds>` parameter which specifies the number of key derivation function rounds to be used. Higher the number more time it takes to unlock the key.
 
 Time to see the result of the above command. Here is an example of my revised way of generating SSH keys along with content of the files.
 
-&nbsp;
-```shell
+```bash
 $ ssh-keygen -t ed25519 -a 100 -C "my-key-comment" -f my-key-name
 Generating public/private ed25519 key pair.
 Enter passphrase (empty for no passphrase):
