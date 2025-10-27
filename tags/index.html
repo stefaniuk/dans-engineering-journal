@@ -1,0 +1,42 @@
+---
+layout: page
+title: Tags
+permalink: /tags/
+---
+
+<div class="tags-cloud">
+  {% assign sorted_tags = site.tags | sort %}
+  {% for tag in sorted_tags %}
+    {% assign tag_name = tag[0] %}
+    {% assign tag_posts = tag[1] %}
+    <div class="tag-cloud-item">
+      <a href="{{ site.baseurl }}/tags/{{ tag_name | slugify }}/" class="tag-cloud-link">
+        <span class="tag-name">{{ tag_name }}</span>
+        <span class="tag-count">({{ tag_posts | size }})</span>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="tags-list">
+  <h2>All Tags</h2>
+  {% assign sorted_tags = site.tags | sort %}
+  {% for tag in sorted_tags %}
+    {% assign tag_name = tag[0] %}
+    {% assign tag_posts = tag[1] %}
+    <div class="tag-section">
+      <h3 class="tag-section-title">
+        <a href="{{ site.baseurl }}/tags/{{ tag_name | slugify }}/">{{ tag_name }}</a>
+        <span class="tag-section-count">({{ tag_posts | size }} post{% if tag_posts.size != 1 %}s{% endif %})</span>
+      </h3>
+      <ul class="tag-post-list">
+        {% for post in tag_posts %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="post-date">– {{ post.date | date: "%-d %b %Y" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</div>

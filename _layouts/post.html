@@ -17,6 +17,14 @@ layout: default
         {% endif %}
       {% endif %}
     </p>
+    {% if page.tags and page.tags.size > 0 %}
+    <div class="post-tags">
+      <span class="tags-label">Tags:</span>
+      {% for tag in page.tags %}
+        <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}/" class="post-tag" rel="tag">{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
   </header>
   <div class="post-content" itemprop="articleBody">
     {{ content }}

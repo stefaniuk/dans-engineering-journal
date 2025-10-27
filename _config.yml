@@ -20,6 +20,15 @@ gems:
   - jekyll-last-modified-at
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-archives
+
+jekyll-archives:
+  enabled:
+    - tags
+  layouts:
+    tag: tag
+  permalinks:
+    tag: '/tags/:name/'
 
 sass:
   style: compressed

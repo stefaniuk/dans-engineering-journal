@@ -13,6 +13,8 @@ Welcome to the repository for [stefaniuk.co.uk](stefaniuk.co.uk) - my profession
     - [🖥️ Running the site locally](#️-running-the-site-locally)
     - [🏗️ Building Static Files](#️-building-static-files)
     - [🛠️ Using Make Commands](#️-using-make-commands)
+    - [🔄 Indicating Post Updates](#-indicating-post-updates)
+    - [🏷️ Using Tags](#️-using-tags)
   - [📄 License](#-license)
 
 ## 🎯 Purpose & Philosophy
@@ -161,6 +163,36 @@ Best practice:
 
 - Update the field only for substantive changes (new sections, significant clarifications, updated code / versions) – ignore minor typo fixes.
 - Consider keeping a short "Changelog" or "Revision notes" section for heavily revised technical articles.
+
+### 🏷️ Using Tags
+
+Organise posts by topic using tags. Tags automatically generate archive pages at `/tags/{tag-name}/` and are displayed on individual posts.
+
+Add tags to post:
+
+```yaml
+---
+layout: post
+title: "Some Post"
+tags: [uv, python, tools, learning]
+---
+```
+
+Features:
+
+- Automatic tag pages, each tag gets its own archive page at `/tags/{tag-name}/` listing all tagged posts
+- Tag index, view all tags at `/tags/` with post counts
+- SEO-friendly, tags use proper `rel="tag"` attributes and clean URLs
+- Visual badges, tags appear as clickable badges below the post title
+
+Best practices:
+
+- Use lowercase, hyphenated tags for consistency (e.g., `package-management` not `Package Management`)
+- Keep tags focused and specific (3-6 tags per post is ideal)
+- Use common, searchable terms that readers might look for
+- Reuse existing tags when appropriate to build tag archives
+
+View all tags at [stefaniuk.co.uk/tags/](https://stefaniuk.co.uk/tags/)
 
 ## 📄 License
 

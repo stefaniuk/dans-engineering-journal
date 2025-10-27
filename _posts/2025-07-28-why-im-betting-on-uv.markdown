@@ -4,6 +4,7 @@ title: "Why I'm Betting on uv: The Python Package Manager I Wish Existed Years A
 date: 2025-07-28 07:22:00 Europe/London
 last_modified_at: 2025-10-27 20:07:00 Europe/London
 display_last_modified: true
+tags: [uv, python, tools, learning]
 comments: true
 ---
 

@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<div class="tag-archive">
+  <header class="tag-archive-header">
+    <h1 class="tag-archive-title">Posts tagged with "{{ page.title }}"</h1>
+    <p class="tag-archive-count">{{ page.posts | size }} post{% if page.posts.size != 1 %}s{% endif %}</p>
+  </header>
+
+  <div class="post-list">
+    {% for post in page.posts %}
+      <article class="post-list-item">
+        <h2 class="post-list-title">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+        <p class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+            {{ post.date | date: "%-d %B %Y" }}
+          </time>
+        </p>
+        {% if post.excerpt %}
+          <div class="post-excerpt">
+            {{ post.excerpt }}
+          </div>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+
+  <div class="tag-archive-footer">
+    <a href="{{ '/tags/' | relative_url }}" class="back-to-tags">← View all tags</a>
+  </div>
+</div>
