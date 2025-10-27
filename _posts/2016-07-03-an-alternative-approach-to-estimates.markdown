@@ -2,6 +2,7 @@
 layout: post
 title: "An Alternative Approach to Estimates"
 date: 2016-07-03 21:18:13 Europe/London
+tags: [project-management, estimation, software-development, methodology, git]
 code-math: true
 comments: true
 ---

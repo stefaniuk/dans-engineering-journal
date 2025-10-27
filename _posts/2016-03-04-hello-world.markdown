@@ -2,6 +2,7 @@
 layout: post
 title: "Hello, World!"
 date: 2016-03-04 07:21:52 Europe/London
+tags: [blogging, personal, professional-development]
 comments: true
 ---
 

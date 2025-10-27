@@ -2,6 +2,7 @@
 layout: post
 title: "Create Consistent SSH User Accounts Across Multiple Linux Servers"
 date: 2017-08-22 22:29:00 Europe/London
+tags: [linux, ssh, ansible, devops, automation, security, bash]
 comments: true
 ---
 

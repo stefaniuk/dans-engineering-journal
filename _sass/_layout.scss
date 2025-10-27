@@ -238,6 +238,34 @@
     font-size: 24px;
 }
 
+// Homepage tags section
+.home-tags-section {
+    margin-top: math.div($spacing-unit, 2) * 3;
+    padding-top: $spacing-unit;
+    border-top: 1px solid $grey-color-light;
+}
+
+.tags-section-heading {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: $grey-color-dark;
+}
+
+.view-all-tags {
+    margin-top: 15px;
+    text-align: center;
+    font-size: $small-font-size;
+
+    a {
+        color: $grey-color;
+        text-decoration: none;
+
+        &:hover {
+            color: $grey-color-dark;
+        }
+    }
+}
+
 
 
 /**
