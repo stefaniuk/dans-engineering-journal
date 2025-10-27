@@ -6,8 +6,8 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 27 Oct 2025 20:51:24 +0000</pubDate>
-    <lastBuildDate>Mon, 27 Oct 2025 20:51:24 +0000</lastBuildDate>
+    <pubDate>Mon, 27 Oct 2025 21:06:46 +0000</pubDate>
+    <lastBuildDate>Mon, 27 Oct 2025 21:06:46 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -356,6 +356,18 @@ Private-MAC: 72102d9a0f158f653577df276fcf329b482df329
         <link>http://stefaniuk.co.uk/a-revised-way-of-generating-ssh-keys</link>
         <guid isPermaLink="true">http://stefaniuk.co.uk/a-revised-way-of-generating-ssh-keys</guid>
         
+        <category>ssh</category>
+        
+        <category>security</category>
+        
+        <category>cryptography</category>
+        
+        <category>ed25519</category>
+        
+        <category>linux</category>
+        
+        <category>devops</category>
+        
         
       </item>
     
@@ -424,6 +436,20 @@ useradd &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt
         <pubDate>Tue, 22 Aug 2017 22:29:00 +0100</pubDate>
         <link>http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers</link>
         <guid isPermaLink="true">http://stefaniuk.co.uk/create-consistent-ssh-user-across-linux-servers</guid>
+        
+        <category>linux</category>
+        
+        <category>ssh</category>
+        
+        <category>ansible</category>
+        
+        <category>devops</category>
+        
+        <category>automation</category>
+        
+        <category>security</category>
+        
+        <category>bash</category>
         
         
       </item>
@@ -617,6 +643,16 @@ Developer 20       3                       16 +8:-8
         <link>http://stefaniuk.co.uk/an-alternative-approach-to-estimates</link>
         <guid isPermaLink="true">http://stefaniuk.co.uk/an-alternative-approach-to-estimates</guid>
         
+        <category>project-management</category>
+        
+        <category>estimation</category>
+        
+        <category>software-development</category>
+        
+        <category>methodology</category>
+        
+        <category>git</category>
+        
         
       </item>
     
@@ -631,6 +667,12 @@ Developer 20       3                       16 +8:-8
         <pubDate>Fri, 04 Mar 2016 07:21:52 +0000</pubDate>
         <link>http://stefaniuk.co.uk/hello-world</link>
         <guid isPermaLink="true">http://stefaniuk.co.uk/hello-world</guid>
+        
+        <category>blogging</category>
+        
+        <category>personal</category>
+        
+        <category>professional-development</category>
         
         
       </item>
