@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="A Revised Way of Generating SSH Keys" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-10-27T21:03:32+00:00","datePublished":"2017-09-02T22:16:00+01:00","description":"I’ve been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They’ve been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the elliptic curve cryptography has become much more popular in the recent decade.","headline":"A Revised Way of Generating SSH Keys","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/a-revised-way-of-generating-ssh-keys"},"url":"http://stefaniuk.co.uk/a-revised-way-of-generating-ssh-keys"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-10-27T21:53:03+00:00","datePublished":"2017-09-02T22:16:00+01:00","description":"I’ve been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They’ve been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the elliptic curve cryptography has become much more popular in the recent decade.","headline":"A Revised Way of Generating SSH Keys","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/a-revised-way-of-generating-ssh-keys"},"url":"http://stefaniuk.co.uk/a-revised-way-of-generating-ssh-keys"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -207,7 +207,9 @@
   <div class="post-content" itemprop="articleBody">
     <p>I’ve been using 4096-bit RSA SSH keys for quite a few years. The RSA keys are very compatible. They’ve been working on various operating systems as well as on mobile devices. They are also known as being slow and potentially insecure if created with a small amount of bits, especially after the year 2013. Today, I decided to do some research to find an alternative configuration. Things have moved on since my last check. Large keys are still considered secure, however the <a href="https://en.wikipedia.org/wiki/Elliptic_curve_cryptography"><strong>elliptic curve cryptography</strong></a> has become much more popular in the recent decade.</p>
 
-<p><em>“The primary benefit promised by elliptic curve cryptography is a smaller key size, reducing storage and transmission requirements, i.e. that an elliptic curve group could provide the same level of security afforded by an RSA-based system with a large modulus and correspondingly larger key: for example, a 256-bit elliptic curve public key should provide comparable security to a 3072-bit RSA public key.”</em></p>
+<blockquote>
+  <p>“The primary benefit promised by elliptic curve cryptography is a smaller key size, reducing storage and transmission requirements, i.e. that an elliptic curve group could provide the same level of security afforded by an RSA-based system with a large modulus and correspondingly larger key: for example, a 256-bit elliptic curve public key should provide comparable security to a 3072-bit RSA public key.”</p>
+</blockquote>
 
 <p>My take on it is that if this new signature algorithm can give us similar or even <strong>better level of security</strong> (yes, its implementation is more secure than RSA) with a <strong>comparable flexibility</strong> using <strong>less resources</strong>, it is definitely time to adopt it. For anyone who is interested in a detailed explanation how exactly it works a lot of papers have been published providing mathematical rationale behind it.</p>
 
@@ -215,15 +217,14 @@
 
 <p>The easies way to generate such an SSH key is by using the <code class="language-plaintext highlighter-rouge">ssh-keygen</code> command of the OpenSSH package:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t ed25519 -o -a 100
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-o</span> <span class="nt">-a</span> 100
 </code></pre></div></div>
 
 <p>The <code class="language-plaintext highlighter-rouge">-t ed25519</code> parameter is used to generate two asymmetrical keys based on the elliptic curve cryptography. The output is produced in the new <a href="https://tools.ietf.org/html/rfc4716">RFC4716</a> format rather than the well known PEM and the flag <code class="language-plaintext highlighter-rouge">-o</code> to support it is implied by default so it can be omitted. It enforces use of a modern key derivation function (KDF) powered by combination of <a href="https://github.com/openssh/openssh-portable/blob/f104da263de995f66b6861b4f3368264ee483d7f/openbsd-compat/bcrypt_pbkdf.c">PBKDF2 and bcrypt</a>. In practice this means that our keypair is more resistant to brute-force password cracking. This is especially true when combined with the <code class="language-plaintext highlighter-rouge">-a &lt;rounds&gt;</code> parameter which specifies the number of key derivation function rounds to be used. Higher the number more time it takes to unlock the key.</p>
 
 <p>Time to see the result of the above command. Here is an example of my revised way of generating SSH keys along with content of the files.</p>
 
-<p> </p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-a</span> 100 <span class="nt">-C</span> <span class="s2">"my-key-comment"</span> <span class="nt">-f</span> my-key-name
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-a</span> 100 <span class="nt">-C</span> <span class="s2">"my-key-comment"</span> <span class="nt">-f</span> my-key-name
 Generating public/private ed25519 key pair.
 Enter passphrase <span class="o">(</span>empty <span class="k">for </span>no passphrase<span class="o">)</span>:
 Enter same passphrase again:
