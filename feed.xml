@@ -6,8 +6,8 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 18 Dec 2025 23:36:00 +0000</pubDate>
-    <lastBuildDate>Thu, 18 Dec 2025 23:36:00 +0000</lastBuildDate>
+    <pubDate>Thu, 18 Dec 2025 23:39:33 +0000</pubDate>
+    <lastBuildDate>Thu, 18 Dec 2025 23:39:33 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -173,7 +173,7 @@ uv init api
 
 &lt;p&gt;For shared tools such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pytest&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ruff&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mypy&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;black&lt;/code&gt;, define them only once in the root &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;language-toml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[project.optional-dependencies]&lt;/span&gt;
+&lt;div class=&quot;language-toml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[dependency-groups]&lt;/span&gt;
 &lt;span class=&quot;py&quot;&gt;dev&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pytest&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ruff&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mypy&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
 &lt;span class=&quot;nn&quot;&gt;[tool.pytest.ini_options]&lt;/span&gt;

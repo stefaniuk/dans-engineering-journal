@@ -370,7 +370,7 @@ uv init api
 
 <p>For shared tools such as <code class="language-plaintext highlighter-rouge">pytest</code>, <code class="language-plaintext highlighter-rouge">ruff</code>, <code class="language-plaintext highlighter-rouge">mypy</code>, and <code class="language-plaintext highlighter-rouge">black</code>, define them only once in the root <code class="language-plaintext highlighter-rouge">pyproject.toml</code>:</p>
 
-<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[project.optional-dependencies]</span>
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[dependency-groups]</span>
 <span class="py">dev</span> <span class="p">=</span> <span class="p">[</span><span class="s">"pytest"</span><span class="p">,</span> <span class="s">"ruff"</span><span class="p">,</span> <span class="s">"black"</span><span class="p">,</span> <span class="s">"mypy"</span><span class="p">]</span>
 
 <span class="nn">[tool.pytest.ini_options]</span>
