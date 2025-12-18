@@ -174,7 +174,7 @@ This tells uv to use your workspace version of `core` instead of fetching it fro
 For shared tools such as `pytest`, `ruff`, `mypy`, and `black`, define them only once in the root `pyproject.toml`:
 
 ```toml
-[project.optional-dependencies]
+[dependency-groups]
 dev = ["pytest", "ruff", "black", "mypy"]
 
 [tool.pytest.ini_options]
