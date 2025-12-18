@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-10-27T20:07:00+00:00","datePublished":"2025-07-28T07:22:00+01:00","description":"I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time.","headline":"Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/why-im-betting-on-uv"},"url":"http://stefaniuk.co.uk/why-im-betting-on-uv"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-12-18T23:29:00+00:00","datePublished":"2025-07-28T07:22:00+01:00","description":"I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time.","headline":"Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/why-im-betting-on-uv"},"url":"http://stefaniuk.co.uk/why-im-betting-on-uv"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -189,7 +189,7 @@
         
           <span class="updated-separator">&nbsp;•&nbsp;</span>
           <span class="updated-label">Last updated:</span>
-          <time datetime="2025-10-27T20:07:00+00:00" itemprop="dateModified" class="updated-date">27 October 2025</time>
+          <time datetime="2025-12-18T23:29:00+00:00" itemprop="dateModified" class="updated-date">18 December 2025</time>
         
       
     </p>
@@ -215,7 +215,7 @@
 
 <p>That’s why <a href="https://github.com/astral-sh/uv"><code class="language-plaintext highlighter-rouge">uv</code></a> caught my eye. It’s not entirely new, it’s been around for a while, but it’s really starting to mature. <code class="language-plaintext highlighter-rouge">uv</code> brings together everything needed for Python project management into one modern, fast tool. Here’s why I think it’s worth serious consideration.</p>
 
-<h3 id="what-is-uv-and-why-should-you-care">What is uv and why should you care?</h3>
+<h2 id="what-is-uv-and-why-should-you-care">What is uv and why should you care?</h2>
 
 <p><code class="language-plaintext highlighter-rouge">uv</code> is designed to replace <code class="language-plaintext highlighter-rouge">pip</code>, <code class="language-plaintext highlighter-rouge">pip-tools</code>, and <code class="language-plaintext highlighter-rouge">virtualenv</code> with a single command-line tool. If you’ve ever thought Python’s packaging story felt clunky compared to Node’s npm or yarn, uv is what you’ve been waiting for.</p>
 
@@ -228,7 +228,7 @@
 
 <p>If you’ve used Node.js before, uv will feel familiar, it’s like npm for Python - dependency management, environment isolation, and builds in one.</p>
 
-<h3 id="quick-start-and-how-i-got-going">Quick start and how I got going</h3>
+<h2 id="quick-start-and-how-i-got-going">Quick start and how I got going</h2>
 
 <p>The biggest compliment I can give uv is that it just works.
 Here are a few examples of how I got started:</p>
@@ -256,9 +256,9 @@ uv init <span class="nt">--app</span> <span class="nt">--name</span> my-app <spa
 
 <p>uv keeps things tidy. You can use different Python versions in different projects, and switching between them is easy.</p>
 
-<h3 id="my-initial-observations">My initial observations</h3>
+<h2 id="my-initial-observations">My initial observations</h2>
 
-<h4 id="what-i-liked">What I liked</h4>
+<h3 id="what-i-liked">What I liked</h3>
 
 <ul>
   <li>Speed, installing dependencies and syncing environments is much faster than pip and virtualenv.</li>
@@ -267,24 +267,24 @@ uv init <span class="nt">--app</span> <span class="nt">--name</span> my-app <spa
   <li>Built-in Python management, like pyenv, but integrated.</li>
 </ul>
 
-<h4 id="what-could-improve">What could improve</h4>
+<h3 id="what-could-improve">What could improve</h3>
 
 <ul>
   <li>There’s still no single command to bump all dependencies to their latest versions (like <code class="language-plaintext highlighter-rouge">yarn upgrade</code>). For now, you have to update version numbers manually.</li>
 </ul>
 
-<h4 id="should-you-switch-to-uv">Should you switch to uv?</h4>
+<h3 id="should-you-switch-to-uv">Should you switch to uv?</h3>
 
 <p>If you want a fast, simple, and unified Python development workflow, uv is a great choice. It’s already production-ready and has an active community of maintainers and contributors.</p>
 
 <p>If you rely heavily on advanced Poetry-style features, it’s worth testing first. But uv feels like the direction Python tooling is heading. For my projects, the switch has already paid off.</p>
 
-<h3 id="my-everyday-usage-flow">My everyday usage flow</h3>
+<h2 id="my-everyday-usage-flow">My everyday usage flow</h2>
 
 <p>I now use uv daily and settled into a repeatable flow that keeps things clean and reproducible.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start fresh, remove old environment and lock files</span>
-<span class="nb">rm</span> <span class="nt">-rf</span> .venv uv.lock requirements.txt requirements-dev.txt
+<span class="nb">rm</span> <span class="nt">-rf</span> .venv uv.lock requirements.txt
 
 <span class="c"># Sync dependencies based on pyproject.toml (creates a new .venv and uv.lock)</span>
 uv <span class="nb">sync</span>
@@ -294,7 +294,6 @@ uv tree
 
 <span class="c"># Keep .toml and .txt files in sync if you need the legacy requirements files</span>
 uv pip compile pyproject.toml <span class="nt">--output-file</span> requirements.txt
-uv pip compile pyproject.toml <span class="nt">--extra</span> dev <span class="nt">--output-file</span> requirements-dev.txt
 
 <span class="c"># Run a script directly</span>
 uv run python ./path/to/script.py
@@ -317,19 +316,19 @@ uv run pytest
 <span class="py">requires-python</span> <span class="p">=</span> <span class="py">"&gt;</span><span class="p">=</span><span class="mf">3.14</span><span class="s">"</span><span class="err">
 </span><span class="py">dependencies</span> <span class="p">=</span> <span class="py">["loguru&gt;</span><span class="p">=</span><span class="mf">0.7</span><span class="err">.</span><span class="mi">3</span><span class="s">"]</span><span class="err">
 </span>
-<span class="nn">[project.optional-dependencies]</span>
+<span class="nn">[dependency-groups]</span>
 <span class="py">dev</span> <span class="p">=</span> <span class="p">[</span><span class="s">"pytest"</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>This setup, one clear <code class="language-plaintext highlighter-rouge">pyproject.toml</code> and a consistent uv flow, has made my Python work much smoother. I no longer worry about drifting environments or mismatched dependencies.</p>
 
-<h3 id="working-with-multi-package-projects-in-uv">Working with multi-package projects in <code class="language-plaintext highlighter-rouge">uv</code></h3>
+<h2 id="working-with-multi-package-projects-in-uv">Working with multi-package projects in <code class="language-plaintext highlighter-rouge">uv</code></h2>
 
 <p>As my projects grow, I split them into separate components such as <code class="language-plaintext highlighter-rouge">core</code>, <code class="language-plaintext highlighter-rouge">api</code>, and <code class="language-plaintext highlighter-rouge">cli</code>. This is where I discovered one of uv’s best features, <a href="https://docs.astral.sh/uv/concepts/projects/workspaces/">workspaces</a>!</p>
 
 <p>Workspaces let you manage several packages inside a single repository, with one lockfile, shared tooling, and clear internal dependencies. Here’s how I’ve been using them.</p>
 
-<h4 id="1-create-a-top-level-workspace">1. Create a top-level workspace</h4>
+<h3 id="1-create-a-top-level-workspace">1. Create a top-level workspace</h3>
 
 <p>At the repository root, define a workspace in your <code class="language-plaintext highlighter-rouge">pyproject.toml</code>:</p>
 
@@ -357,7 +356,7 @@ uv init api
 <span class="nb">touch </span>api/src/api/__init__.py api/tests/test_api.py
 </code></pre></div></div>
 
-<h4 id="2-link-internal-dependencies-explicitly">2. Link internal dependencies explicitly</h4>
+<h3 id="2-link-internal-dependencies-explicitly">2. Link internal dependencies explicitly</h3>
 
 <p>If one package depends on another, for example, <code class="language-plaintext highlighter-rouge">cli</code> uses functions from <code class="language-plaintext highlighter-rouge">core</code> tell uv to link them locally at the top-level <code class="language-plaintext highlighter-rouge">pyproject.toml</code>:</p>
 
@@ -367,7 +366,7 @@ uv init api
 
 <p>This tells uv to use your workspace version of <code class="language-plaintext highlighter-rouge">core</code> instead of fetching it from PyPI. Without this mapping, uv would assume <code class="language-plaintext highlighter-rouge">core</code> is an external dependency and try to install it from the registry.</p>
 
-<h4 id="3-keep-configuration-dry-dont-repeat-yourself">3. Keep configuration DRY (Don’t Repeat Yourself)</h4>
+<h3 id="3-keep-configuration-dry-dont-repeat-yourself">3. Keep configuration DRY (Don’t Repeat Yourself)</h3>
 
 <p>For shared tools such as <code class="language-plaintext highlighter-rouge">pytest</code>, <code class="language-plaintext highlighter-rouge">ruff</code>, <code class="language-plaintext highlighter-rouge">mypy</code>, and <code class="language-plaintext highlighter-rouge">black</code>, define them only once in the root <code class="language-plaintext highlighter-rouge">pyproject.toml</code>:</p>
 
@@ -381,7 +380,7 @@ uv init api
 
 <p>This setup keeps your test and lint configuration consistent across all packages. Each sub-package automatically uses these tools when you run <code class="language-plaintext highlighter-rouge">uv sync --extra dev</code>. Keep in mind that uv commands, especially <code class="language-plaintext highlighter-rouge">uv sync</code> and <code class="language-plaintext highlighter-rouge">uv run</code>, should be executed from the root workspace directory, not from within an individual package. That’s how uv resolves shared dependencies and applies your top-level configuration correctly.</p>
 
-<h4 id="4-handle-imports-cleanly-in-src-layouts">4. Handle imports cleanly in <code class="language-plaintext highlighter-rouge">src/</code> layouts</h4>
+<h3 id="4-handle-imports-cleanly-in-src-layouts">4. Handle imports cleanly in <code class="language-plaintext highlighter-rouge">src/</code> layouts</h3>
 
 <p>If you’re following the <code class="language-plaintext highlighter-rouge">src/</code> layout (e.g. <code class="language-plaintext highlighter-rouge">core/src/core</code>), Python needs to know where to find those modules. You can fix this by adding to the root pytest config:</p>
 
@@ -391,7 +390,7 @@ uv init api
 
 <p>This makes imports like <code class="language-plaintext highlighter-rouge">from core import something</code> work during test discovery.</p>
 
-<h4 id="5-versioning-without-duplication">5. Versioning without duplication</h4>
+<h3 id="5-versioning-without-duplication">5. Versioning without duplication</h3>
 
 <p>You don’t need to define <code class="language-plaintext highlighter-rouge">__version__</code> manually in every package. Instead, read it directly from your project metadata:</p>
 
@@ -405,7 +404,7 @@ uv init api
 
 <p>This small snippet keeps the version in sync with your <code class="language-plaintext highlighter-rouge">pyproject.toml</code> automatically. It’s one of those “set it once and forget it” improvements that make the workspace cleaner.</p>
 
-<h4 id="6-organise-integration-and-cross-package-tests-at-the-root">6. Organise integration and cross-package tests at the root</h4>
+<h3 id="6-organise-integration-and-cross-package-tests-at-the-root">6. Organise integration and cross-package tests at the root</h3>
 
 <p>Place integration tests that touch multiple packages in a shared folder at the repository root:</p>
 
@@ -421,7 +420,7 @@ uv init api
 
 <p>This makes it easy to test your system as a whole without leaving the workspace root.</p>
 
-<h3 id="effective-project-structure">Effective project structure</h3>
+<h2 id="effective-project-structure">Effective project structure</h2>
 
 <p>The layout below shows a clean, maintainable multi-package setup using uv workspaces. This pattern scales well for modular back-end systems, internal libraries, and CLI utilities that need to evolve together but remain logically separate.</p>
 
@@ -459,7 +458,7 @@ uv init api
 └── README.md                        # project overview and documentation
 </code></pre></div></div>
 
-<h3 id="final-takeaway">Final takeaway</h3>
+<h2 id="final-takeaway">Final takeaway</h2>
 
 <p>uv’s workspace model has become one of its most powerful (and underrated) features. It keeps multi-package repositories clean, removes duplication, and makes local development feel seamless.</p>
 

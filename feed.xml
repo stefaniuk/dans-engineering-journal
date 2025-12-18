@@ -6,8 +6,8 @@
 </description>
     <link>http://stefaniuk.co.uk/</link>
     <atom:link href="http://stefaniuk.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 27 Oct 2025 21:53:11 +0000</pubDate>
-    <lastBuildDate>Mon, 27 Oct 2025 21:53:11 +0000</lastBuildDate>
+    <pubDate>Thu, 18 Dec 2025 23:36:00 +0000</pubDate>
+    <lastBuildDate>Thu, 18 Dec 2025 23:36:00 +0000</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -18,7 +18,7 @@
 
 &lt;p&gt;That’s why &lt;a href=&quot;https://github.com/astral-sh/uv&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv&lt;/code&gt;&lt;/a&gt; caught my eye. It’s not entirely new, it’s been around for a while, but it’s really starting to mature. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv&lt;/code&gt; brings together everything needed for Python project management into one modern, fast tool. Here’s why I think it’s worth serious consideration.&lt;/p&gt;
 
-&lt;h3 id=&quot;what-is-uv-and-why-should-you-care&quot;&gt;What is uv and why should you care?&lt;/h3&gt;
+&lt;h2 id=&quot;what-is-uv-and-why-should-you-care&quot;&gt;What is uv and why should you care?&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv&lt;/code&gt; is designed to replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip-tools&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; with a single command-line tool. If you’ve ever thought Python’s packaging story felt clunky compared to Node’s npm or yarn, uv is what you’ve been waiting for.&lt;/p&gt;
 
@@ -31,7 +31,7 @@
 
 &lt;p&gt;If you’ve used Node.js before, uv will feel familiar, it’s like npm for Python - dependency management, environment isolation, and builds in one.&lt;/p&gt;
 
-&lt;h3 id=&quot;quick-start-and-how-i-got-going&quot;&gt;Quick start and how I got going&lt;/h3&gt;
+&lt;h2 id=&quot;quick-start-and-how-i-got-going&quot;&gt;Quick start and how I got going&lt;/h2&gt;
 
 &lt;p&gt;The biggest compliment I can give uv is that it just works.
 Here are a few examples of how I got started:&lt;/p&gt;
@@ -59,9 +59,9 @@ uv init &lt;span class=&quot;nt&quot;&gt;--app&lt;/span&gt; &lt;span class=&quot
 
 &lt;p&gt;uv keeps things tidy. You can use different Python versions in different projects, and switching between them is easy.&lt;/p&gt;
 
-&lt;h3 id=&quot;my-initial-observations&quot;&gt;My initial observations&lt;/h3&gt;
+&lt;h2 id=&quot;my-initial-observations&quot;&gt;My initial observations&lt;/h2&gt;
 
-&lt;h4 id=&quot;what-i-liked&quot;&gt;What I liked&lt;/h4&gt;
+&lt;h3 id=&quot;what-i-liked&quot;&gt;What I liked&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Speed, installing dependencies and syncing environments is much faster than pip and virtualenv.&lt;/li&gt;
@@ -70,24 +70,24 @@ uv init &lt;span class=&quot;nt&quot;&gt;--app&lt;/span&gt; &lt;span class=&quot
   &lt;li&gt;Built-in Python management, like pyenv, but integrated.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;what-could-improve&quot;&gt;What could improve&lt;/h4&gt;
+&lt;h3 id=&quot;what-could-improve&quot;&gt;What could improve&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;There’s still no single command to bump all dependencies to their latest versions (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn upgrade&lt;/code&gt;). For now, you have to update version numbers manually.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;should-you-switch-to-uv&quot;&gt;Should you switch to uv?&lt;/h4&gt;
+&lt;h3 id=&quot;should-you-switch-to-uv&quot;&gt;Should you switch to uv?&lt;/h3&gt;
 
 &lt;p&gt;If you want a fast, simple, and unified Python development workflow, uv is a great choice. It’s already production-ready and has an active community of maintainers and contributors.&lt;/p&gt;
 
 &lt;p&gt;If you rely heavily on advanced Poetry-style features, it’s worth testing first. But uv feels like the direction Python tooling is heading. For my projects, the switch has already paid off.&lt;/p&gt;
 
-&lt;h3 id=&quot;my-everyday-usage-flow&quot;&gt;My everyday usage flow&lt;/h3&gt;
+&lt;h2 id=&quot;my-everyday-usage-flow&quot;&gt;My everyday usage flow&lt;/h2&gt;
 
 &lt;p&gt;I now use uv daily and settled into a repeatable flow that keeps things clean and reproducible.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Start fresh, remove old environment and lock files&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; .venv uv.lock requirements.txt requirements-dev.txt
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; .venv uv.lock requirements.txt
 
 &lt;span class=&quot;c&quot;&gt;# Sync dependencies based on pyproject.toml (creates a new .venv and uv.lock)&lt;/span&gt;
 uv &lt;span class=&quot;nb&quot;&gt;sync&lt;/span&gt;
@@ -97,7 +97,6 @@ uv tree
 
 &lt;span class=&quot;c&quot;&gt;# Keep .toml and .txt files in sync if you need the legacy requirements files&lt;/span&gt;
 uv pip compile pyproject.toml &lt;span class=&quot;nt&quot;&gt;--output-file&lt;/span&gt; requirements.txt
-uv pip compile pyproject.toml &lt;span class=&quot;nt&quot;&gt;--extra&lt;/span&gt; dev &lt;span class=&quot;nt&quot;&gt;--output-file&lt;/span&gt; requirements-dev.txt
 
 &lt;span class=&quot;c&quot;&gt;# Run a script directly&lt;/span&gt;
 uv run python ./path/to/script.py
@@ -120,19 +119,19 @@ uv run pytest
 &lt;span class=&quot;py&quot;&gt;requires-python&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;&quot;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.14&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;py&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;[&quot;loguru&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.7&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
 &lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;[project.optional-dependencies]&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;[dependency-groups]&lt;/span&gt;
 &lt;span class=&quot;py&quot;&gt;dev&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pytest&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This setup, one clear &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; and a consistent uv flow, has made my Python work much smoother. I no longer worry about drifting environments or mismatched dependencies.&lt;/p&gt;
 
-&lt;h3 id=&quot;working-with-multi-package-projects-in-uv&quot;&gt;Working with multi-package projects in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv&lt;/code&gt;&lt;/h3&gt;
+&lt;h2 id=&quot;working-with-multi-package-projects-in-uv&quot;&gt;Working with multi-package projects in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv&lt;/code&gt;&lt;/h2&gt;
 
 &lt;p&gt;As my projects grow, I split them into separate components such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;core&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;api&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cli&lt;/code&gt;. This is where I discovered one of uv’s best features, &lt;a href=&quot;https://docs.astral.sh/uv/concepts/projects/workspaces/&quot;&gt;workspaces&lt;/a&gt;!&lt;/p&gt;
 
 &lt;p&gt;Workspaces let you manage several packages inside a single repository, with one lockfile, shared tooling, and clear internal dependencies. Here’s how I’ve been using them.&lt;/p&gt;
 
-&lt;h4 id=&quot;1-create-a-top-level-workspace&quot;&gt;1. Create a top-level workspace&lt;/h4&gt;
+&lt;h3 id=&quot;1-create-a-top-level-workspace&quot;&gt;1. Create a top-level workspace&lt;/h3&gt;
 
 &lt;p&gt;At the repository root, define a workspace in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;:&lt;/p&gt;
 
@@ -160,7 +159,7 @@ uv init api
 &lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;api/src/api/__init__.py api/tests/test_api.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;2-link-internal-dependencies-explicitly&quot;&gt;2. Link internal dependencies explicitly&lt;/h4&gt;
+&lt;h3 id=&quot;2-link-internal-dependencies-explicitly&quot;&gt;2. Link internal dependencies explicitly&lt;/h3&gt;
 
 &lt;p&gt;If one package depends on another, for example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cli&lt;/code&gt; uses functions from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;core&lt;/code&gt; tell uv to link them locally at the top-level &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;:&lt;/p&gt;
 
@@ -170,7 +169,7 @@ uv init api
 
 &lt;p&gt;This tells uv to use your workspace version of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;core&lt;/code&gt; instead of fetching it from PyPI. Without this mapping, uv would assume &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;core&lt;/code&gt; is an external dependency and try to install it from the registry.&lt;/p&gt;
 
-&lt;h4 id=&quot;3-keep-configuration-dry-dont-repeat-yourself&quot;&gt;3. Keep configuration DRY (Don’t Repeat Yourself)&lt;/h4&gt;
+&lt;h3 id=&quot;3-keep-configuration-dry-dont-repeat-yourself&quot;&gt;3. Keep configuration DRY (Don’t Repeat Yourself)&lt;/h3&gt;
 
 &lt;p&gt;For shared tools such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pytest&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ruff&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mypy&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;black&lt;/code&gt;, define them only once in the root &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;:&lt;/p&gt;
 
@@ -184,7 +183,7 @@ uv init api
 
 &lt;p&gt;This setup keeps your test and lint configuration consistent across all packages. Each sub-package automatically uses these tools when you run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv sync --extra dev&lt;/code&gt;. Keep in mind that uv commands, especially &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv sync&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uv run&lt;/code&gt;, should be executed from the root workspace directory, not from within an individual package. That’s how uv resolves shared dependencies and applies your top-level configuration correctly.&lt;/p&gt;
 
-&lt;h4 id=&quot;4-handle-imports-cleanly-in-src-layouts&quot;&gt;4. Handle imports cleanly in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/&lt;/code&gt; layouts&lt;/h4&gt;
+&lt;h3 id=&quot;4-handle-imports-cleanly-in-src-layouts&quot;&gt;4. Handle imports cleanly in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/&lt;/code&gt; layouts&lt;/h3&gt;
 
 &lt;p&gt;If you’re following the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/&lt;/code&gt; layout (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;core/src/core&lt;/code&gt;), Python needs to know where to find those modules. You can fix this by adding to the root pytest config:&lt;/p&gt;
 
@@ -194,7 +193,7 @@ uv init api
 
 &lt;p&gt;This makes imports like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;from core import something&lt;/code&gt; work during test discovery.&lt;/p&gt;
 
-&lt;h4 id=&quot;5-versioning-without-duplication&quot;&gt;5. Versioning without duplication&lt;/h4&gt;
+&lt;h3 id=&quot;5-versioning-without-duplication&quot;&gt;5. Versioning without duplication&lt;/h3&gt;
 
 &lt;p&gt;You don’t need to define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__version__&lt;/code&gt; manually in every package. Instead, read it directly from your project metadata:&lt;/p&gt;
 
@@ -208,7 +207,7 @@ uv init api
 
 &lt;p&gt;This small snippet keeps the version in sync with your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; automatically. It’s one of those “set it once and forget it” improvements that make the workspace cleaner.&lt;/p&gt;
 
-&lt;h4 id=&quot;6-organise-integration-and-cross-package-tests-at-the-root&quot;&gt;6. Organise integration and cross-package tests at the root&lt;/h4&gt;
+&lt;h3 id=&quot;6-organise-integration-and-cross-package-tests-at-the-root&quot;&gt;6. Organise integration and cross-package tests at the root&lt;/h3&gt;
 
 &lt;p&gt;Place integration tests that touch multiple packages in a shared folder at the repository root:&lt;/p&gt;
 
@@ -224,7 +223,7 @@ uv init api
 
 &lt;p&gt;This makes it easy to test your system as a whole without leaving the workspace root.&lt;/p&gt;
 
-&lt;h3 id=&quot;effective-project-structure&quot;&gt;Effective project structure&lt;/h3&gt;
+&lt;h2 id=&quot;effective-project-structure&quot;&gt;Effective project structure&lt;/h2&gt;
 
 &lt;p&gt;The layout below shows a clean, maintainable multi-package setup using uv workspaces. This pattern scales well for modular back-end systems, internal libraries, and CLI utilities that need to evolve together but remain logically separate.&lt;/p&gt;
 
@@ -262,7 +261,7 @@ uv init api
 └── README.md                        # project overview and documentation
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;final-takeaway&quot;&gt;Final takeaway&lt;/h3&gt;
+&lt;h2 id=&quot;final-takeaway&quot;&gt;Final takeaway&lt;/h2&gt;
 
 &lt;p&gt;uv’s workspace model has become one of its most powerful (and underrated) features. It keeps multi-package repositories clean, removes duplication, and makes local development feel seamless.&lt;/p&gt;
 
