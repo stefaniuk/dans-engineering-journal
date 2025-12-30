@@ -18,13 +18,14 @@ update: clean
 		&& JEKYLL_ENV=production bundle exec jekyll build
 
 save: update
+	[ -z "$(TITLE)" ] && echo "ERROR: Please provide a TITLE for the post to publish, e.g. make publish TITLE='My New Post'" && exit 1 ||:
 	cd _site \
 		&& touch .nojekyll \
 		&& git add -A \
-		&& git commit -m "Publish"
+		&& git commit -m "feat(post): publish '$(TITLE)'"
 
 publish: save # Publish the site to GitHub
 	cd _site \
-		&& git push
+		&& echo git push
 
 .SILENT:
