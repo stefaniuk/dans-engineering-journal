@@ -5,9 +5,9 @@ date: 2025-09-19 16:32:00 Europe/London
 comments: true
 ---
 
-If you've ever been asked *"What's running in production right now?"* and found yourself scrolling through Git logs, squinting at CI dashboards, or digging through half-forgotten release notes, you know the pain. How can something as basic as *knowing what's live* still feel so fragile in 2025?
+If you've ever been asked _"What's running in production right now?"_ and found yourself scrolling through Git logs, squinting at CI dashboards, or digging through half-forgotten release notes, you know the pain. How can something as basic as _knowing what's live_ still feel so fragile in 2025?
 
-The truth is, many teams are still working with habits that made sense a decade ago - long-lived branches, manual releases, vague commit messages. But if we're serious about flow, about delivering value to users quickly and safely, we need to rethink the fundamentals. What if *every commit* could be a clear, traceable unit of change? What if we could deploy multiple times a day, without drowning in meaningless version numbers? What if "release" wasn't a painful ceremony but a simple switch?
+The truth is, many teams are still working with habits that made sense a decade ago - long-lived branches, manual releases, vague commit messages. But if we're serious about flow, about delivering value to users quickly and safely, we need to rethink the fundamentals. What if _every commit_ could be a clear, traceable unit of change? What if we could deploy multiple times a day, without drowning in meaningless version numbers? What if "release" wasn't a painful ceremony but a simple switch?
 
 That's what this post is about. I'll walk through how I use **[Conventional Commits](https://www.conventionalcommits.org/)**, **[Semantic Versioning](https://semver.org/)**, and a sprinkle of **build metadata** (commit SHAs and pipeline IDs) to bring order to the chaos. And yes, we'll talk about **[feature toggles](https://github.com/NHSDigital/software-engineering-quality-framework/blob/main/practices/feature-toggling.md)** and **[OpenFeature](https://openfeature.dev/)** too, because without them, none of this scales.
 
@@ -35,11 +35,11 @@ Now, let's map those commits to **Semantic Versioning** (SemVer). You've seen ve
 
 If a dev merges `feat: add search endpoint`, our version bumps from `1.4.2` → `1.5.0`. If we fix a bug, we go `1.5.0` → `1.5.1`. And if we break compatibility, it's `2.0.0`.
 
-Think about that from the consumer's perspective: they get a clear signal about what changed and how risky it is. Isn't that the kind of contract we'd want if *we* were on the receiving end?
+Think about that from the consumer's perspective: they get a clear signal about what changed and how risky it is. Isn't that the kind of contract we'd want if _we_ were on the receiving end?
 
 ## But What About Deployments Every Day?
 
-Here's where traditional ways of working start to crack. In trunk-based development, you might deploy ten times a day. Do you really want to publish *ten* new SemVer versions daily? Would that help your users - or just flood them with noise?
+Here's where traditional ways of working start to crack. In trunk-based development, you might deploy ten times a day. Do you really want to publish _ten_ new SemVer versions daily? Would that help your users - or just flood them with noise?
 
 This is where **build metadata** comes in. SemVer allows an optional suffix like `+something`:
 
@@ -73,7 +73,7 @@ One speaks human. The other speaks traceability. Both point to the same thing.
 
 ## Deployment vs Release - They're Not the Same
 
-This is where many teams trip up. They treat *deployment* and *release* as synonyms. But are they?
+This is where many teams trip up. They treat _deployment_ and _release_ as synonyms. But are they?
 
 - **Deployment** is a technical act: shipping code into production.
 - **Release** is a business act: exposing functionality to users.
@@ -93,7 +93,7 @@ Toggles are more than switches. They're the enabler of modern delivery:
 3. **Risk management** – toggle off instantly if something breaks.
 4. **Experimentation** – A/B testing, canaries, gradual rollouts.
 
-In NHS England, we call this out explicitly: *feature toggling decouples deployment from release*. Without it, we'd still be shackled to slow release trains, fearing every push to production.
+In NHS England, we call this out explicitly: _feature toggling decouples deployment from release_. Without it, we'd still be shackled to slow release trains, fearing every push to production.
 
 ## Enter OpenFeature: A Standard for Flags
 
@@ -107,9 +107,9 @@ In practice:
 
 - Deploy daily with OpenFeature flags.
 - Release selectively by flipping toggles.
-- Keep SemVer bumps aligned with *user-visible* changes, not raw deployments.
+- Keep SemVer bumps aligned with _user-visible_ changes, not raw deployments.
 
-That's how you stay fast *and* safe.
+That's how you stay fast _and_ safe.
 
 ## GitHub Pull Requests and Conventional Commits
 
@@ -138,6 +138,6 @@ Instead:
 - Deploy continuously, release with toggles.
 - Standardise with OpenFeature.
 
-Next time someone asks *"What's running in production right now?"*, you won't need to guess. You'll know. And isn't that exactly the kind of confidence modern engineering should give us?
+Next time someone asks _"What's running in production right now?"_, you won't need to guess. You'll know. And isn't that exactly the kind of confidence modern engineering should give us?
 
-*Future posts will dive deeper into GitHub PR setups, automating changelogs, and real-world case studies of feature toggling at scale. Stay tuned.*
+_Future posts will dive deeper into GitHub PR setups, automating changelogs, and real-world case studies of feature toggling at scale. Stay tuned._
