@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://stefaniuk.co.uk/why-im-betting-on-uv">
+  <link rel="alternate" type="application/rss+xml" title="Dan's Blog" href="http://stefaniuk.co.uk/feed.xml">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago | Dan’s Blog</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago" />
+<meta name="author" content="Daniel Stefaniuk" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time." />
+<meta property="og:description" content="I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time." />
+<link rel="canonical" href="http://stefaniuk.co.uk/why-im-betting-on-uv" />
+<meta property="og:url" content="http://stefaniuk.co.uk/why-im-betting-on-uv" />
+<meta property="og:site_name" content="Dan’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-28T07:22:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Daniel Stefaniuk"},"dateModified":"2025-12-18T23:29:00+00:00","datePublished":"2025-07-28T07:22:00+01:00","description":"I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time.","headline":"Why I’m Betting on uv: The Python Package Manager I Wish Existed Years Ago","mainEntityOfPage":{"@type":"WebPage","@id":"http://stefaniuk.co.uk/why-im-betting-on-uv"},"url":"http://stefaniuk.co.uk/why-im-betting-on-uv"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74924701-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+
+
+</head>
+
+  <body>
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Dan's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          
+          <a class="page-link" href="/about/">About</a>
+          
+          
+        
+          
+        
+          
+          
+          <a class="page-link" href="/tags/">Tags</a>
+          
+          
+        
+          
+        
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+          
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Why I'm Betting on uv: The Python Package Manager I Wish Existed Years Ago</h1>
+    <p class="post-meta">
+      <span class="published-label">Published:</span>
+      <time datetime="2025-07-28T07:22:00+01:00" itemprop="datePublished" class="published-date">28 July 2025</time>
+      
+        
+        
+        
+          <span class="updated-separator">&nbsp;•&nbsp;</span>
+          <span class="updated-label">Last updated:</span>
+          <time datetime="2025-12-18T23:29:00+00:00" itemprop="dateModified" class="updated-date">18 December 2025</time>
+        
+      
+    </p>
+    
+    <div class="post-tags">
+      <span class="tags-label">Tags:</span>
+      
+        <a href="/tags/uv/" class="post-tag" rel="tag">uv</a>
+      
+        <a href="/tags/python/" class="post-tag" rel="tag">python</a>
+      
+        <a href="/tags/tools/" class="post-tag" rel="tag">tools</a>
+      
+        <a href="/tags/learning/" class="post-tag" rel="tag">learning</a>
+      
+    </div>
+    
+  </header>
+  <div class="post-content" itemprop="articleBody">
+    <p>I started my career working with Java, where tools like Maven made managing dependencies simple and reliable. Everything just worked (more or less). You didn’t have to worry about setting up different tools or whether your project would build the same way every time.</p>
+
+<p>When I started using Python, things weren’t quite as smooth. Python is powerful and flexible, but managing environments and dependencies always felt messy compared to Java and Maven. I often wished for something more predictable and organised.</p>
+
+<p>That’s why <a href="https://github.com/astral-sh/uv"><code class="language-plaintext highlighter-rouge">uv</code></a> caught my eye. It’s not entirely new, it’s been around for a while, but it’s really starting to mature. <code class="language-plaintext highlighter-rouge">uv</code> brings together everything needed for Python project management into one modern, fast tool. Here’s why I think it’s worth serious consideration.</p>
+
+<h2 id="what-is-uv-and-why-should-you-care">What is uv and why should you care?</h2>
+
+<p><code class="language-plaintext highlighter-rouge">uv</code> is designed to replace <code class="language-plaintext highlighter-rouge">pip</code>, <code class="language-plaintext highlighter-rouge">pip-tools</code>, and <code class="language-plaintext highlighter-rouge">virtualenv</code> with a single command-line tool. If you’ve ever thought Python’s packaging story felt clunky compared to Node’s npm or yarn, uv is what you’ve been waiting for.</p>
+
+<p>You can install it on macOS with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>uv
+</code></pre></div></div>
+
+<p>or follow other <a href="https://github.com/astral-sh/uv?tab=readme-ov-file#installation">installation instructions</a> from the uv GitHub page.</p>
+
+<p>If you’ve used Node.js before, uv will feel familiar, it’s like npm for Python - dependency management, environment isolation, and builds in one.</p>
+
+<h2 id="quick-start-and-how-i-got-going">Quick start and how I got going</h2>
+
+<p>The biggest compliment I can give uv is that it just works.
+Here are a few examples of how I got started:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Download and manage multiple Python versions</span>
+uv python <span class="nb">install </span>3.12 3.13 3.14
+
+<span class="c"># Pin a global default Python version</span>
+uv python pin <span class="nt">--global</span> 3.14
+
+<span class="c"># See where Python versions are stored</span>
+uv python <span class="nb">dir</span>
+
+<span class="c"># Create a virtual environment in the project folder</span>
+uv venv .venv
+
+<span class="c"># Run Python inside the environment (no manual activation)</span>
+uv run python <span class="nt">--version</span>
+
+<span class="c"># Bootstrap a new app quickly</span>
+uv init <span class="nt">--app</span> <span class="nt">--name</span> my-app <span class="se">\</span>
+  <span class="nt">--python</span> 3.14 <span class="nt">--managed-python</span> <span class="se">\</span>
+  <span class="nt">--no-readme</span> <span class="nt">--vcs</span> none
+</code></pre></div></div>
+
+<p>uv keeps things tidy. You can use different Python versions in different projects, and switching between them is easy.</p>
+
+<h2 id="my-initial-observations">My initial observations</h2>
+
+<h3 id="what-i-liked">What I liked</h3>
+
+<ul>
+  <li>Speed, installing dependencies and syncing environments is much faster than pip and virtualenv.</li>
+  <li>One tool for all tasks, no juggling between pip, pip-tools, and virtualenv.</li>
+  <li>Modern by default, everything is <code class="language-plaintext highlighter-rouge">pyproject.toml</code>-based.</li>
+  <li>Built-in Python management, like pyenv, but integrated.</li>
+</ul>
+
+<h3 id="what-could-improve">What could improve</h3>
+
+<ul>
+  <li>There’s still no single command to bump all dependencies to their latest versions (like <code class="language-plaintext highlighter-rouge">yarn upgrade</code>). For now, you have to update version numbers manually.</li>
+</ul>
+
+<h3 id="should-you-switch-to-uv">Should you switch to uv?</h3>
+
+<p>If you want a fast, simple, and unified Python development workflow, uv is a great choice. It’s already production-ready and has an active community of maintainers and contributors.</p>
+
+<p>If you rely heavily on advanced Poetry-style features, it’s worth testing first. But uv feels like the direction Python tooling is heading. For my projects, the switch has already paid off.</p>
+
+<h2 id="my-everyday-usage-flow">My everyday usage flow</h2>
+
+<p>I now use uv daily and settled into a repeatable flow that keeps things clean and reproducible.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Start fresh, remove old environment and lock files</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> .venv uv.lock requirements.txt
+
+<span class="c"># Sync dependencies based on pyproject.toml (creates a new .venv and uv.lock)</span>
+uv <span class="nb">sync</span>
+
+<span class="c"># Inspect dependency tree</span>
+uv tree
+
+<span class="c"># Keep .toml and .txt files in sync if you need the legacy requirements files</span>
+uv pip compile pyproject.toml <span class="nt">--output-file</span> requirements.txt
+
+<span class="c"># Run a script directly</span>
+uv run python ./path/to/script.py
+
+<span class="c"># Run tests with dev dependencies</span>
+uv <span class="nb">sync</span> <span class="nt">--extra</span> dev
+uv run pytest
+
+<span class="c"># In Visual Studio Code go to:</span>
+<span class="c"># Command Palette (⇧⌘P) → "Python: Select Interpreter"</span>
+<span class="c"># and choose `./.venv/bin/python` located in your project</span>
+</code></pre></div></div>
+
+<p>A minimal working <code class="language-plaintext highlighter-rouge">pyproject.toml</code> example:</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[project]</span>
+<span class="py">name</span> <span class="p">=</span> <span class="s">"my-app"</span>
+<span class="py">version</span> <span class="p">=</span> <span class="s">"0.1.0"</span>
+<span class="py">description</span> <span class="p">=</span> <span class="s">"Add your description here"</span>
+<span class="py">requires-python</span> <span class="p">=</span> <span class="py">"&gt;</span><span class="p">=</span><span class="mf">3.14</span><span class="s">"</span><span class="err">
+</span><span class="py">dependencies</span> <span class="p">=</span> <span class="py">["loguru&gt;</span><span class="p">=</span><span class="mf">0.7</span><span class="err">.</span><span class="mi">3</span><span class="s">"]</span><span class="err">
+</span>
+<span class="nn">[dependency-groups]</span>
+<span class="py">dev</span> <span class="p">=</span> <span class="p">[</span><span class="s">"pytest"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>This setup, one clear <code class="language-plaintext highlighter-rouge">pyproject.toml</code> and a consistent uv flow, has made my Python work much smoother. I no longer worry about drifting environments or mismatched dependencies.</p>
+
+<h2 id="working-with-multi-package-projects-in-uv">Working with multi-package projects in <code class="language-plaintext highlighter-rouge">uv</code></h2>
+
+<p>As my projects grow, I split them into separate components such as <code class="language-plaintext highlighter-rouge">core</code>, <code class="language-plaintext highlighter-rouge">api</code>, and <code class="language-plaintext highlighter-rouge">cli</code>. This is where I discovered one of uv’s best features, <a href="https://docs.astral.sh/uv/concepts/projects/workspaces/">workspaces</a>!</p>
+
+<p>Workspaces let you manage several packages inside a single repository, with one lockfile, shared tooling, and clear internal dependencies. Here’s how I’ve been using them.</p>
+
+<h3 id="1-create-a-top-level-workspace">1. Create a top-level workspace</h3>
+
+<p>At the repository root, define a workspace in your <code class="language-plaintext highlighter-rouge">pyproject.toml</code>:</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[tool.uv.workspace]</span>
+<span class="py">members</span> <span class="p">=</span> <span class="p">[</span><span class="s">"core"</span><span class="p">,</span> <span class="s">"cli"</span><span class="p">,</span> <span class="s">"api"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Each folder (<code class="language-plaintext highlighter-rouge">core</code>, <code class="language-plaintext highlighter-rouge">cli</code>, <code class="language-plaintext highlighter-rouge">api</code>) will have its own <code class="language-plaintext highlighter-rouge">pyproject.toml</code>, but they’ll share one virtual environment and one <code class="language-plaintext highlighter-rouge">uv.lock</code>. This keeps the setup unified and avoids dependency duplication.</p>
+
+<p>You can initialise these packages easily:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uv init core
+uv init cli
+uv init api
+</code></pre></div></div>
+
+<p>Then create the rest of the folder structure:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="se">\</span>
+  core/src/core core/tests <span class="se">\</span>
+  cli/src/cli cli/tests <span class="se">\</span>
+  api/src/api api/tests
+<span class="nb">touch </span>core/src/core/__init__.py core/tests/test_core.py
+<span class="nb">touch </span>cli/src/cli/__init__.py cli/tests/test_cli.py
+<span class="nb">touch </span>api/src/api/__init__.py api/tests/test_api.py
+</code></pre></div></div>
+
+<h3 id="2-link-internal-dependencies-explicitly">2. Link internal dependencies explicitly</h3>
+
+<p>If one package depends on another, for example, <code class="language-plaintext highlighter-rouge">cli</code> uses functions from <code class="language-plaintext highlighter-rouge">core</code> tell uv to link them locally at the top-level <code class="language-plaintext highlighter-rouge">pyproject.toml</code>:</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[tool.uv.sources]</span>
+<span class="py">core</span> <span class="o">=</span> <span class="p">{</span> <span class="py">workspace</span> <span class="p">=</span> <span class="kc">true</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>This tells uv to use your workspace version of <code class="language-plaintext highlighter-rouge">core</code> instead of fetching it from PyPI. Without this mapping, uv would assume <code class="language-plaintext highlighter-rouge">core</code> is an external dependency and try to install it from the registry.</p>
+
+<h3 id="3-keep-configuration-dry-dont-repeat-yourself">3. Keep configuration DRY (Don’t Repeat Yourself)</h3>
+
+<p>For shared tools such as <code class="language-plaintext highlighter-rouge">pytest</code>, <code class="language-plaintext highlighter-rouge">ruff</code>, <code class="language-plaintext highlighter-rouge">mypy</code>, and <code class="language-plaintext highlighter-rouge">black</code>, define them only once in the root <code class="language-plaintext highlighter-rouge">pyproject.toml</code>:</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[dependency-groups]</span>
+<span class="py">dev</span> <span class="p">=</span> <span class="p">[</span><span class="s">"pytest"</span><span class="p">,</span> <span class="s">"ruff"</span><span class="p">,</span> <span class="s">"black"</span><span class="p">,</span> <span class="s">"mypy"</span><span class="p">]</span>
+
+<span class="nn">[tool.pytest.ini_options]</span>
+<span class="py">testpaths</span> <span class="p">=</span> <span class="p">[</span><span class="s">"core/tests"</span><span class="p">,</span> <span class="s">"cli/tests"</span><span class="p">,</span> <span class="s">"api/tests"</span><span class="p">,</span> <span class="s">"tests"</span><span class="p">]</span>
+<span class="py">addopts</span> <span class="p">=</span> <span class="s">"-ra -q"</span>
+</code></pre></div></div>
+
+<p>This setup keeps your test and lint configuration consistent across all packages. Each sub-package automatically uses these tools when you run <code class="language-plaintext highlighter-rouge">uv sync --extra dev</code>. Keep in mind that uv commands, especially <code class="language-plaintext highlighter-rouge">uv sync</code> and <code class="language-plaintext highlighter-rouge">uv run</code>, should be executed from the root workspace directory, not from within an individual package. That’s how uv resolves shared dependencies and applies your top-level configuration correctly.</p>
+
+<h3 id="4-handle-imports-cleanly-in-src-layouts">4. Handle imports cleanly in <code class="language-plaintext highlighter-rouge">src/</code> layouts</h3>
+
+<p>If you’re following the <code class="language-plaintext highlighter-rouge">src/</code> layout (e.g. <code class="language-plaintext highlighter-rouge">core/src/core</code>), Python needs to know where to find those modules. You can fix this by adding to the root pytest config:</p>
+
+<div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[tool.pytest.ini_options]</span>
+<span class="py">pythonpath</span> <span class="p">=</span> <span class="p">[</span><span class="s">"core/src"</span><span class="p">,</span> <span class="s">"api/src"</span><span class="p">,</span> <span class="s">"cli/src"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>This makes imports like <code class="language-plaintext highlighter-rouge">from core import something</code> work during test discovery.</p>
+
+<h3 id="5-versioning-without-duplication">5. Versioning without duplication</h3>
+
+<p>You don’t need to define <code class="language-plaintext highlighter-rouge">__version__</code> manually in every package. Instead, read it directly from your project metadata:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">importlib.metadata</span> <span class="kn">import</span> <span class="n">version</span><span class="p">,</span> <span class="n">PackageNotFoundError</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">__version__</span> <span class="o">=</span> <span class="nf">version</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">PackageNotFoundError</span><span class="p">:</span>
+    <span class="n">__version__</span> <span class="o">=</span> <span class="sh">"</span><span class="s">0.0.0</span><span class="sh">"</span>
+</code></pre></div></div>
+
+<p>This small snippet keeps the version in sync with your <code class="language-plaintext highlighter-rouge">pyproject.toml</code> automatically. It’s one of those “set it once and forget it” improvements that make the workspace cleaner.</p>
+
+<h3 id="6-organise-integration-and-cross-package-tests-at-the-root">6. Organise integration and cross-package tests at the root</h3>
+
+<p>Place integration tests that touch multiple packages in a shared folder at the repository root:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tests/
+├── test_integration_api_core.py
+└── test_integration_cli_core.py
+</code></pre></div></div>
+
+<p>Since your root pytest config already points to all test folders, running tests from the top-level works out of the box:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uv run pytest
+</code></pre></div></div>
+
+<p>This makes it easy to test your system as a whole without leaving the workspace root.</p>
+
+<h2 id="effective-project-structure">Effective project structure</h2>
+
+<p>The layout below shows a clean, maintainable multi-package setup using uv workspaces. This pattern scales well for modular back-end systems, internal libraries, and CLI utilities that need to evolve together but remain logically separate.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── api/                             # package: API
+│   ├── src/api/
+│   │   └── __init__.py              # API package root
+│   ├── tests/
+│   │   └── test_api.py              # unit tests for API
+│   └── pyproject.toml               # package-level metadata
+│
+├── cli/                             # package: CLI
+│   ├── src/cli/
+│   │   └── __init__.py              # CLI package root
+│   ├── tests/
+│   │   └── test_cli.py              # unit tests for CLI
+│   └── pyproject.toml               # package-level metadata
+│
+├── core/                            # package: Core business logic
+│   ├── src/core/
+│   │   └── __init__.py              # Core package root
+│   ├── tests/
+│   │   └── test_core.py             # unit tests for Core
+│   └── pyproject.toml               # package-level metadata
+│
+├── tests/                           # root-level integration tests
+│   ├── test_integration_api_core.py # cross-package integration test
+│   └── test_integration_cli_core.py # cross-package integration test
+│
+├── .env.default                     # example environment variables
+├── .gitignore                       # git ignore rules
+├── .python-version                  # pinned Python version
+├── Makefile                         # developer &amp; CI/CD shortcuts (build, test, clean, etc.)
+├── pyproject.toml                   # workspace root config (defines uv workspace)
+└── README.md                        # project overview and documentation
+</code></pre></div></div>
+
+<h2 id="final-takeaway">Final takeaway</h2>
+
+<p>uv’s workspace model has become one of its most powerful (and underrated) features. It keeps multi-package repositories clean, removes duplication, and makes local development feel seamless.</p>
+
+<p>For me, it’s the first time Python tooling has felt coherent across a full stack of packages, the kind of “batteries included” experience I wish we’d always had.</p>
+
+  </div>
+</article>
+
+        
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.identifier = "/why-im-betting-on-uv";
+    this.page.title = "Why I'm Betting on uv: The Python Package Manager I Wish Existed Years Ago";
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//stefaniuk.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+    <footer class="site-footer">
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li><a href="mailto:daniel.stefaniuk@gmail.com">Daniel Stefaniuk</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/stefaniuk"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span></a>
+
+          </li>
+          
+          
+          <li>
+            <a href="https://stackoverflow.com/users/472150"><span class="icon icon--stackoverflow"><svg viewBox="0 0 512 512"><g><path d="M109.6,301.5c0,56.8,0,113.4,0,170.4c85.8,0,171.1,0,257.1,0c0-56.8,0-113.5,0-170.5c11.3,0,22,0,33.1,0   c0,67.8,0,135.6,0,203.6c-107.9,0-215.5,0-323.5,0c0-67.9,0-135.5,0-203.5C87.1,301.5,98,301.5,109.6,301.5z"/><path d="M333,397.4c0,13.9,0,27.3,0,41.2c-65,0-129.9,0-195.2,0c0-13.5,0-27.2,0-41.2C202.9,397.4,267.6,397.4,333,397.4z"/><path d="M185.6,177.3c7.2-12.2,14-23.8,21.3-36c56.2,33.1,112.2,66.1,168.8,99.5c-7.1,12-14,23.8-21.2,36.1   C298.1,243.7,242.1,210.6,185.6,177.3z"/><path d="M340.1,329.2c-63.2-17-125.9-33.8-189.2-50.9c3.6-13.5,7.2-26.7,10.8-40.4c63.1,17,126,33.8,189.3,50.9   C347.3,302.4,343.7,315.6,340.1,329.2z"/><path d="M391.1,15.9c14-2.4,27.3-4.7,41.2-7.1c11.2,64.4,22.3,128.5,33.5,193c-13.7,2.4-27.2,4.7-41.2,7.2   C413.4,144.7,402.3,80.7,391.1,15.9z"/><path d="M417.1,211.6c-11.8,8-23,15.7-34.6,23.5c-36.8-54-73.5-107.7-110.4-161.9c11.5-7.9,22.9-15.6,34.6-23.6   C343.5,103.7,380.2,157.4,417.1,211.6z"/><path d="M338.1,343.4c-1.3,14.2-2.6,27.7-3.8,41.7c-65.2-6-130-12-195.2-18c1.3-14.1,2.6-27.6,3.9-41.7   C208,331.4,272.7,337.4,338.1,343.4z"/></g></svg>
+</span></a>
+
+          </li>
+          
+          
+          <li>
+            <a href="https://twitter.com/danstefaniuk"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span></a>
+
+          </li>
+          
+          
+          <li>
+            <a href="https://uk.linkedin.com/in/dstefaniuk"><span class="icon icon--linkedin"><svg viewBox="0 0 67 67"><path fill="#828282" d="M49.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H49.837z M21.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H21.959z M33,64  C16.432,64,3,50.568,3,34C3,17.431,16.432,4,33,4s30,13.431,30,30C63,50.568,49.568,64,33,64z M25.354,48.137V27.71h-6.789v20.427  H25.354z"/></svg>
+</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>A blog about software engineering
+</p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  </body>
+</html>
