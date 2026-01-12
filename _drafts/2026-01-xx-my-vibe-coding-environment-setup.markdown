@@ -11,6 +11,7 @@ To cover:
 - Visual Studio Code features and extensions
 - Specification-driven development and spec-kit
 - My custom prompts
+- See <https://thenewstack.io/martin-fowler-on-preparing-for-ais-nondeterministic-computing/>
 
 Next:
 
